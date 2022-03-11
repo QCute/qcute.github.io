@@ -1,0 +1,98 @@
+{{ partial "head.html" . }}
+
+<body>
+    <script>const enableSummary = {{ .Site.Params.enableSummary }};</script>
+    <script src="{{ "https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js" }}"></script>
+    <div class="main animate__animated animate__fadeInDown">
+        {{ partial "nav.html" . }}
+        {{ partial "header.html" . }}
+        <div class="search-wrapper">
+            <span class="search-toggle" title="{{ i18n "realtime" }}">
+                <i class="ri-toggle-line ri-xl toggle-line"></i>
+                <i class="ri-toggle-fill ri-xl toggle-fill" style="display: none;"></i>
+            </span>
+            <input type="text" class="search-input" placeholder="{{ i18n "search" }}..." disabled/>
+            <span class="focus-border"></span>
+            <span class="search-icon" title="{{ i18n "search" }}"><i class="ri-search-line ri-xl search-action"></i></span>
+        </div>
+        <div class="content">
+            <div class="pagination"></div>
+        </div>
+    </div>
+    <a id="back_to_top" href="#" class="back_to_top"><i class="ri-arrow-up-s-line"></i></a>
+    <script>
+        let realtime = false;
+        let fuse = {};
+        document.querySelector('.toggle-line').onclick = (event) => { 
+            realtime = true;
+            event.target.style.display = "none"; 
+            document.querySelector('.toggle-fill').style.display = "inline-block"; 
+        }
+        document.querySelector('.toggle-fill').onclick = (event) => { 
+            realtime = false;
+            event.target.style.display = "none"; 
+            document.querySelector('.toggle-line').style.display = "inline-block"; 
+        }
+        document.querySelector('.search-input').oninput = (event) => realtime ? search(event.target) : undefined;
+        document.querySelector('.search-input').onchange = (event) => !realtime ? search(event.target) : undefined;
+        document.querySelector('.search-action').onclick = (event) => search(document.querySelector('.search-input'));
+        fetch(`${location.origin}/index.json`).then(response => response.json()).then(json => {
+            const options = {
+                keys: [
+                    "title",
+                    "contents"
+                ]
+            };
+            fuse = new Fuse(json, options);
+            // load complete
+            document.querySelector('.search-input').removeAttribute('disabled');
+        });
+
+        function search(target) {
+            const data = fuse.search(target.value);
+            document.querySelector('.content').innerHTML = template(data);
+        }
+
+        function template(data) {
+            const list = data.map((e) => {
+                const summy = enableSummary ? `
+                    <div class="list">
+                        <div class="post_content markdown">
+                            <p>${e.item.summy}...</p>
+                        </div>
+                    </div>
+                ` : "";
+                const tags = e.item.tags ? `
+                    <span class="field tags">
+                        <i class="ri-stack-line"></i>
+                        ` + e.item.tags.map(t => `<a href="${location.origin}/tags/${t}/">${t}</a>`).join("") + `
+                    </span>
+                ` : "";
+                return `
+                    <div class="post animated fadeInDown">
+                        <div class="post_title">
+                            <h2><a href='${e.item.permalink}'>${e.item.title}</a></h2>
+                        </div>
+                        ${summy}
+                        <div class="post_footer">
+                            <div class="meta">
+                                <div class="info">
+                                    <span class="field">
+                                        <i class="ri-time-line"></i>
+                                        <span class="date">${e.item.date}</span>
+                                    </span>
+                                    ${tags}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }).join("");
+            return list + `<div class="pagination"></div>`;
+        }
+    </script>
+    {{ partial "footer.html" . }}
+    {{ partial "js.html" . }}
+</body>
+
+</html>
