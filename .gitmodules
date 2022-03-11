@@ -1,0 +1,3 @@
+[submodule "themes/graphite"]
+	path = themes/graphite
+	url = https://github.com/qcute/hugo-theme-graphite
