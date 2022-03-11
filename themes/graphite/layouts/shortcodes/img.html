@@ -1,0 +1,27 @@
+{{ $path := .Get "src" }}
+{{ $caption := .Get "title" }}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ "https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.32/fancybox/fancybox.css" }}" >
+<div class="fancybox">
+    <a data-fancybox="gallery" href="{{ $path | absURL }}" data-caption="{{ $caption }}">
+        <img src="{{ $path | absURL }}" />
+    </a>
+</div>
+<script src="{{ "https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.32/fancybox/fancybox.umd.js" }}"></script>
+<script>
+// FancyBox
+Fancybox.bind("[data-fancybox='gallery']", {
+  arrows: false,
+  infobar: false,
+  buttons: [],
+  clickContent: "close",
+  autoFocus: false,
+  backFocus: false,
+  wheel: false,
+  mobile: {
+    clickContent: "close",
+    clickSlide: "close",
+    dblclickContent: false,
+    dblclickSlide: false
+  },
+});
+</script>
