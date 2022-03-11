@@ -1,0 +1,76 @@
+baseURL = "https://qcute.github.io/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+title = "轻作"
+theme = "graphite"
+hasCJKLanguage = true
+summaryLength = 100
+enableEmoji = true
+googleAnalytics = ""
+# code color
+pygmentsUseClasses = true
+pygmentCodeFences = true
+pygmentscodefencesguesssyntax = true
+
+[pagination]
+pageSize = 10
+
+[blackfriday]
+  smartypants = false
+
+[[menu.main]]
+  name = "首页"
+  weight = 10
+  identifier = "home"
+  url = "/"
+[[menu.main]]
+  name = "分类"
+  weight = 20
+  identifier = "categories"
+  url = "/categories/"
+[[menu.main]]
+  name = "标签"
+  weight = 30
+  identifier = "tags"
+  url = "/tags/"
+[[menu.main]]
+  name = "归档"
+  weight = 40
+  identifier = "archive"
+  url = "/posts/"
+[[menu.main]]
+  name = "关于"
+  weight = 50
+  identifier = "about"
+  url = "/about/"
+
+[params]
+  avatar = "/images/favicon.ico"
+  subTitle = "重拾写作的乐趣"
+  footerSlogan = "轻作 | 重拾写作的乐趣"
+  keywords = ["Hugo", "theme", "graphite"]
+  description = "Hugo theme graphite example site."
+  enableMathJax = true
+  enableSummary = false
+  mainSections = ["posts"]
+  enableSearch = true
+  enableGiscus = true
+
+# Author
+[params.author]
+  name = "QCute"
+  homepage = "https://github.com/QCute"
+  email = "759276607@qq.com"
+
+# Your socail's url
+[params.social]
+  github = "https://github.com/QCute"
+  zhihu = "https://www.zhihu.com/people/tui-fei-er-you-ya-de-shen-shi"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+  unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
