@@ -153,7 +153,8 @@ hr {
 
 .header .site_title_container .site_title a {
   font-size: 28px;
-  width: 65px;
+  width: 64px;
+  width: 64px;
   letter-spacing: 2px;
   line-height: 1.2;
   color: #000000;
@@ -575,7 +576,7 @@ hr {
 }
 
 .markdown img {
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -623,6 +624,12 @@ a.back_to_top:hover {
 
 a.back_to_top:hover span {
   color: #555555;
+}
+
+@media print, screen and (min-width: 681px) {
+  .nav_container .site_nav {
+    display: block!important;
+  }
 }
 
 @media print, screen and (max-width: 680px) {
