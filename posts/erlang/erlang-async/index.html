@@ -14,7 +14,7 @@
 </span></span></span><span class=line><span class=cl><span class=cp>        reg[0] = (A0);                                                        \
 </span></span></span><span class=line><span class=cl><span class=cp>        return THE_NON_VALUE;                                                 \
 </span></span></span><span class=line><span class=cl><span class=cp>    } while(0)
-</span></span></span></code></pre></div><p>可见, 保存当前<a href=https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process.h#L1027>PC</a>, <a href=https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process.h#L1020>寄存器数</a>和<a href=https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process.h#L1004>失败原因</a>还有调用参数</p><p><a href>beam_hot.h</a>下call_bif指令</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>OpCase</span><span class=p>(</span><span class=n>call_light_bif_be</span><span class=p>)</span><span class=o>:</span>
+</span></span></span></code></pre></div><p>可见, 保存当前<a href=https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process.h#L1027>PC</a>, <a href=https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process.h#L1020>寄存器数</a>和<a href=https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process.h#L1004>失败原因</a>还有调用参数</p><p><a href>beam_hot.h</a>下call_bif指令</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=nf>OpCase</span><span class=p>(</span><span class=n>call_light_bif_be</span><span class=p>)</span><span class=o>:</span>
 </span></span><span class=line><span class=cl><span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=n>Export</span> <span class=o>*</span><span class=n>export</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=n>ErtsBifFunc</span> <span class=n>bf</span><span class=p>;</span>
@@ -30,13 +30,13 @@
 </span></span></span><span class=line><span class=cl><span class=cm>    * If we have run out of reductions, do a context
 </span></span></span><span class=line><span class=cl><span class=cm>    * switch before calling the BIF.
 </span></span></span><span class=line><span class=cl><span class=cm>    */</span>
-</span></span><span class=line><span class=cl>    <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>arity</span> <span class=o>=</span> <span class=n>GET_EXPORT_ARITY</span><span class=p>(</span><span class=n>export</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>arity</span> <span class=o>=</span> <span class=nf>GET_EXPORT_ARITY</span><span class=p>(</span><span class=n>export</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>current</span> <span class=o>=</span> <span class=o>&amp;</span><span class=n>export</span><span class=o>-&gt;</span><span class=n>info</span><span class=p>.</span><span class=n>mfa</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=k>goto</span> <span class=n>context_switch3</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=n>ERTS_UNLIKELY</span><span class=p>(</span><span class=n>export</span><span class=o>-&gt;</span><span class=n>is_bif_traced</span><span class=p>))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>ASSERT</span><span class=p>(</span><span class=n>VALID_INSTR</span><span class=p>(</span><span class=o>*</span><span class=p>(</span><span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>)));</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nf>ERTS_UNLIKELY</span><span class=p>(</span><span class=n>export</span><span class=o>-&gt;</span><span class=n>is_bif_traced</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>ASSERT</span><span class=p>(</span><span class=nf>VALID_INSTR</span><span class=p>(</span><span class=o>*</span><span class=p>(</span><span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>)));</span>
 </span></span><span class=line><span class=cl>    <span class=o>*</span><span class=n>E</span> <span class=o>=</span> <span class=p>(</span><span class=n>BeamInstr</span><span class=p>)</span> <span class=p>(</span><span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>);;</span>
 </span></span><span class=line><span class=cl>    <span class=k>do</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=n>BeamInstr</span> <span class=n>dis_next</span><span class=p>;</span>
@@ -44,73 +44,73 @@
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=n>ep</span> <span class=o>=</span> <span class=p>(</span><span class=n>Export</span><span class=o>*</span><span class=p>)(</span><span class=n>export</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>      <span class=n>DTRACE_GLOBAL_CALL_FROM_EXPORT</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>ep</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=nf>DTRACE_GLOBAL_CALL_FROM_EXPORT</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>ep</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>      <span class=n>SET_I</span><span class=p>(</span><span class=n>ep</span><span class=o>-&gt;</span><span class=n>addresses</span><span class=p>[</span><span class=n>erts_active_code_ix</span><span class=p>()]);</span>
-</span></span><span class=line><span class=cl>      <span class=n>CHECK_ARGS</span><span class=p>(</span><span class=n>I</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=nf>SET_I</span><span class=p>(</span><span class=n>ep</span><span class=o>-&gt;</span><span class=n>addresses</span><span class=p>[</span><span class=nf>erts_active_code_ix</span><span class=p>()]);</span>
+</span></span><span class=line><span class=cl>      <span class=nf>CHECK_ARGS</span><span class=p>(</span><span class=n>I</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>      <span class=n>dis_next</span> <span class=o>=</span> <span class=o>*</span><span class=n>I</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=n>ERTS_UNLIKELY</span><span class=p>(</span><span class=n>FCALLS</span> <span class=o>&lt;=</span> <span class=mi>0</span><span class=p>))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>ERTS_PROC_GET_SAVED_CALLS_BUF</span><span class=p>(</span><span class=n>c_p</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=n>FCALLS</span> <span class=o>&gt;</span> <span class=n>neg_o_reds</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>          <span class=n>save_calls</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>ep</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nf>ERTS_UNLIKELY</span><span class=p>(</span><span class=n>FCALLS</span> <span class=o>&lt;=</span> <span class=mi>0</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nf>ERTS_PROC_GET_SAVED_CALLS_BUF</span><span class=p>(</span><span class=n>c_p</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=n>FCALLS</span> <span class=o>&gt;</span> <span class=n>neg_o_reds</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nf>save_calls</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>ep</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=k>goto</span> <span class=n>context_switch</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=n>FCALLS</span><span class=o>--</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>      <span class=n>Goto</span><span class=p>(</span><span class=n>dis_next</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=nf>Goto</span><span class=p>(</span><span class=n>dis_next</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>while</span> <span class=p>(</span><span class=mi>0</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_MSACC_SET_BIF_STATE_CACHED_X</span><span class=p>(</span><span class=n>GET_EXPORT_MODULE</span><span class=p>(</span><span class=n>export</span><span class=p>),</span> <span class=n>bf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_MSACC_SET_BIF_STATE_CACHED_X</span><span class=p>(</span><span class=nf>GET_EXPORT_MODULE</span><span class=p>(</span><span class=n>export</span><span class=p>),</span> <span class=n>bf</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  <span class=n>PRE_BIF_SWAPOUT</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_DBG_CHK_REDS</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>FCALLS</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>PRE_BIF_SWAPOUT</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_DBG_CHK_REDS</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>FCALLS</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>fcalls</span> <span class=o>=</span> <span class=n>FCALLS</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=n>FCALLS</span> <span class=o>&lt;=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>save_calls</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>export</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>save_calls</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>export</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
-</span></span><span class=line><span class=cl>  <span class=n>ASSERT</span><span class=p>(</span><span class=o>!</span><span class=n>ERTS_PROC_IS_EXITING</span><span class=p>(</span><span class=n>c_p</span><span class=p>));</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_VERIFY_UNUSED_TEMP_ALLOC</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ASSERT</span><span class=p>(</span><span class=o>!</span><span class=nf>ERTS_PROC_IS_EXITING</span><span class=p>(</span><span class=n>c_p</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_VERIFY_UNUSED_TEMP_ALLOC</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=n>live_hf_end</span> <span class=o>=</span> <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>mbuf</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_CHK_MBUF_SZ</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_CHK_MBUF_SZ</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=n>result</span> <span class=o>=</span> <span class=p>(</span><span class=o>*</span><span class=n>bf</span><span class=p>)(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>reg</span><span class=p>,</span> <span class=n>I</span><span class=p>);</span>    <span class=c1>// 调用
 </span></span></span><span class=line><span class=cl><span class=c1></span>
 </span></span><span class=line><span class=cl>  <span class=cm>/* Only heavy BIFs may GC. */</span>
-</span></span><span class=line><span class=cl>  <span class=n>ASSERT</span><span class=p>(</span><span class=n>E</span> <span class=o>==</span> <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>stop</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ASSERT</span><span class=p>(</span><span class=n>E</span> <span class=o>==</span> <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>stop</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_CHK_MBUF_SZ</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=n>ASSERT</span><span class=p>(</span><span class=o>!</span><span class=n>ERTS_PROC_IS_EXITING</span><span class=p>(</span><span class=n>c_p</span><span class=p>)</span> <span class=o>||</span> <span class=n>is_non_value</span><span class=p>(</span><span class=n>result</span><span class=p>));</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_VERIFY_UNUSED_TEMP_ALLOC</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_HOLE_CHECK</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_REQ_PROC_MAIN_LOCK</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=n>ERTS_IS_GC_AFTER_BIF_DESIRED</span><span class=p>(</span><span class=n>c_p</span><span class=p>))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>Uint</span> <span class=n>arity</span> <span class=o>=</span> <span class=n>GET_EXPORT_ARITY</span><span class=p>(</span><span class=n>export</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=n>erts_gc_after_bif_call_lhf</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>live_hf_end</span><span class=p>,</span> <span class=n>result</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_CHK_MBUF_SZ</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ASSERT</span><span class=p>(</span><span class=o>!</span><span class=nf>ERTS_PROC_IS_EXITING</span><span class=p>(</span><span class=n>c_p</span><span class=p>)</span> <span class=o>||</span> <span class=nf>is_non_value</span><span class=p>(</span><span class=n>result</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_VERIFY_UNUSED_TEMP_ALLOC</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_HOLE_CHECK</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_REQ_PROC_MAIN_LOCK</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nf>ERTS_IS_GC_AFTER_BIF_DESIRED</span><span class=p>(</span><span class=n>c_p</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>Uint</span> <span class=n>arity</span> <span class=o>=</span> <span class=nf>GET_EXPORT_ARITY</span><span class=p>(</span><span class=n>export</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=nf>erts_gc_after_bif_call_lhf</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>live_hf_end</span><span class=p>,</span> <span class=n>result</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=n>reg</span><span class=p>,</span> <span class=n>arity</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=n>E</span> <span class=o>=</span> <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>stop</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
-</span></span><span class=line><span class=cl>  <span class=n>HTOP</span> <span class=o>=</span> <span class=n>HEAP_TOP</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>HTOP</span> <span class=o>=</span> <span class=nf>HEAP_TOP</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=n>FCALLS</span> <span class=o>=</span> <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>fcalls</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>  <span class=n>PROCESS_MAIN_CHK_LOCKS</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_DBG_CHK_REDS</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>FCALLS</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>PROCESS_MAIN_CHK_LOCKS</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_DBG_CHK_REDS</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>FCALLS</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=cm>/*
 </span></span></span><span class=line><span class=cl><span class=cm>  * We have to update the cache if we are enabled in order
 </span></span></span><span class=line><span class=cl><span class=cm>  * to make sure no bookkeeping is done after we disabled
 </span></span></span><span class=line><span class=cl><span class=cm>  * msacc. We don&#39;t always do this as it is quite expensive.
 </span></span></span><span class=line><span class=cl><span class=cm>  */</span>
-</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=n>ERTS_MSACC_IS_ENABLED_CACHED_X</span><span class=p>())</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>ERTS_MSACC_UPDATE_CACHE_X</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nf>ERTS_MSACC_IS_ENABLED_CACHED_X</span><span class=p>())</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>ERTS_MSACC_UPDATE_CACHE_X</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
-</span></span><span class=line><span class=cl>  <span class=n>ERTS_MSACC_SET_STATE_CACHED_M_X</span><span class=p>(</span><span class=n>ERTS_MSACC_STATE_EMULATOR</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=n>ERTS_LIKELY</span><span class=p>(</span><span class=n>is_value</span><span class=p>(</span><span class=n>result</span><span class=p>)))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>r</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span> <span class=o>=</span> <span class=n>result</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=n>CHECK_TERM</span><span class=p>(</span><span class=n>r</span><span class=p>(</span><span class=mi>0</span><span class=p>));</span>
-</span></span><span class=line><span class=cl>    <span class=n>SET_I</span><span class=p>((</span><span class=n>BeamInstr</span> <span class=o>*</span><span class=p>)</span> <span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>    <span class=n>Goto</span><span class=p>(</span><span class=o>*</span><span class=n>I</span><span class=p>);;</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ERTS_MSACC_SET_STATE_CACHED_M_X</span><span class=p>(</span><span class=n>ERTS_MSACC_STATE_EMULATOR</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nf>ERTS_LIKELY</span><span class=p>(</span><span class=nf>is_value</span><span class=p>(</span><span class=n>result</span><span class=p>)))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>r</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span> <span class=o>=</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nf>CHECK_TERM</span><span class=p>(</span><span class=nf>r</span><span class=p>(</span><span class=mi>0</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=nf>SET_I</span><span class=p>((</span><span class=n>BeamInstr</span> <span class=o>*</span><span class=p>)</span> <span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>Goto</span><span class=p>(</span><span class=o>*</span><span class=n>I</span><span class=p>);;</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>c_p</span><span class=o>-&gt;</span><span class=n>freason</span> <span class=o>==</span> <span class=n>TRAP</span><span class=p>)</span> <span class=p>{</span>    <span class=c1>// 失败原因是trap的情况
 </span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=cm>/*
 </span></span></span><span class=line><span class=cl><span class=cm>    * Set the continuation pointer to return to next
@@ -118,18 +118,18 @@
 </span></span></span><span class=line><span class=cl><span class=cm>    * erlang code or by nif_bif.epilogue() when the BIF
 </span></span></span><span class=line><span class=cl><span class=cm>    * is done).
 </span></span></span><span class=line><span class=cl><span class=cm>    */</span>
-</span></span><span class=line><span class=cl>    <span class=n>ASSERT</span><span class=p>(</span><span class=n>VALID_INSTR</span><span class=p>(</span><span class=o>*</span><span class=p>(</span><span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>)));</span>
+</span></span><span class=line><span class=cl>    <span class=nf>ASSERT</span><span class=p>(</span><span class=nf>VALID_INSTR</span><span class=p>(</span><span class=o>*</span><span class=p>(</span><span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>)));</span>
 </span></span><span class=line><span class=cl>    <span class=o>*</span><span class=n>E</span> <span class=o>=</span> <span class=p>(</span><span class=n>BeamInstr</span><span class=p>)</span> <span class=p>(</span><span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>);;</span>
-</span></span><span class=line><span class=cl>    <span class=n>SET_I</span><span class=p>(</span><span class=n>c_p</span><span class=o>-&gt;</span><span class=n>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>SET_I</span><span class=p>(</span><span class=n>c_p</span><span class=o>-&gt;</span><span class=n>i</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>do</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=n>BeamInstr</span> <span class=n>dis_next</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=n>dis_next</span> <span class=o>=</span> <span class=o>*</span><span class=n>I</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>      <span class=n>CHECK_ARGS</span><span class=p>(</span><span class=n>I</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=nf>CHECK_ARGS</span><span class=p>(</span><span class=n>I</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=n>FCALLS</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=o>||</span> <span class=n>FCALLS</span> <span class=o>&gt;</span> <span class=n>neg_o_reds</span><span class=p>)</span> <span class=p>{</span>    <span class=c1>// 还有REDS, 继续
 </span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>FCALLS</span><span class=o>--</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>        <span class=n>Goto</span><span class=p>(</span><span class=n>dis_next</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nf>Goto</span><span class=p>(</span><span class=n>dis_next</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>                                    <span class=c1>// 没有则切换上下文
 </span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>goto</span> <span class=n>context_switch</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
@@ -139,10 +139,10 @@
 </span></span><span class=line><span class=cl>  <span class=cm>/*
 </span></span></span><span class=line><span class=cl><span class=cm>  * Error handling.  SWAPOUT is not needed because it was done above.
 </span></span></span><span class=line><span class=cl><span class=cm>  */</span>
-</span></span><span class=line><span class=cl>  <span class=n>ASSERT</span><span class=p>(</span><span class=n>c_p</span><span class=o>-&gt;</span><span class=n>stop</span> <span class=o>==</span> <span class=n>E</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>  <span class=n>I</span> <span class=o>=</span> <span class=n>handle_error</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>I</span><span class=p>,</span> <span class=n>reg</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>export</span><span class=o>-&gt;</span><span class=n>info</span><span class=p>.</span><span class=n>mfa</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ASSERT</span><span class=p>(</span><span class=n>c_p</span><span class=o>-&gt;</span><span class=n>stop</span> <span class=o>==</span> <span class=n>E</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>I</span> <span class=o>=</span> <span class=nf>handle_error</span><span class=p>(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>I</span><span class=p>,</span> <span class=n>reg</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>export</span><span class=o>-&gt;</span><span class=n>info</span><span class=p>.</span><span class=n>mfa</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=k>goto</span> <span class=n>post_error_handling</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>  <span class=n>ASSERT</span><span class=p>(</span><span class=o>!</span><span class=s>&#34;Fell through &#39;call_light_bif&#39; (-no_next)&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ASSERT</span><span class=p>(</span><span class=o>!</span><span class=s>&#34;Fell through &#39;call_light_bif&#39; (-no_next)&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><h2 id=对于nif>对于Nif</h2><p>使用的是<a href=https://github.com/erlang/otp/blob/maint-24/erts/lib_src/yielding_c_fun/README.md>YCF</a>, YCF是一个源码转换工具, 使c语言支持yield功能, 相比其他有栈协程库, 它不需要保存调用栈</p></div><div class=post_footer></div></div><div class=doc_comments><div class=comments_block_title>发表评论</div><div id=comments></div></div><style>.giscus,.giscus-frame{margin-bottom:48px}</style><script src=https://giscus.app/client.js data-repo=QCute/qcute.github.io data-repo-id=R_kgDOG-5qXQ data-category=Announcements data-category-id=DIC_kwDOG-5qXc4CSRb_ data-mapping=url data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=zh-CN data-loading=lazy crossorigin=anonymous async></script></div></div></div><a id=back_to_top href=# class=back_to_top><i class=ri-arrow-up-s-line></i></a><footer class=footer><div class=powered_by><a href=https://varkai.com>Designed by VarKai,</a>
 <a href=http://www.gohugo.io/>Proudly published with Hugo</a></div><div class=footer_slogan><span>轻作、重拾写作的乐趣</span></div></footer><script src=https://unpkg.com/elevator.js@1.0.1/elevator.min.js></script>
