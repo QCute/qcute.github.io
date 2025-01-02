@@ -1,1 +1,326 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on 轻作</title><link>https://qcute.github.io/categories/shell/</link><description>Recent content in Shell on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>KVM调整磁盘大小</title><link>https://qcute.github.io/posts/shell/kvm-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/kvm-resize/</guid><description>一、创建新空间并复制旧数据 1.创建一块大小100G的空硬盘 qemu-img create -f qcow2 new.qcow2 100G 2.使用virt-resize进行对要扩大的分区进行扩容 virt-resize --expand /dev/sda1 old.qcow2 new.qcow2 virt-resize 在 guestfs-tools 或者 libguestfs-tools 上 二、直接扩大磁盘的大小 qemu-img resize old.qcow2 +10G 三、完成后使用 qemu-img 和 virt-df</description></item><item><title>RockyLinux调整分区大小</title><link>https://qcute.github.io/posts/shell/lv-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/lv-resize/</guid><description>先备份整个home目录 卸载home目录 umount /home 移除home卷 lvremove /dev/mapper/rl-home 调整home卷大小 lvresize -L -10G /dev/mapper/rl-home 调整root卷大小 lvextend -L +10G /dev/mapper/rl-root 同步root卷大小 xfs_growfs /dev/mapper/rl-root 使用pvs查看卷 PV VG Fmt Attr PSize PFree /dev/sda3 rl lvm2 a-- &amp;lt;120.00g 0 将剩余空间分配给home卷</description></item><item><title>Service Unit User问题</title><link>https://qcute.github.io/posts/shell/service-unit-user/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/service-unit-user/</guid><description>今天发现php的getenv函数返回false getenv(&amp;#39;HOME&amp;#39;) 由于是系统是运行在system daemon下的, 查看了service unit, 里面并无指定具体的user 所以, 在Service里面添加User [Service] # specific user User=root 函数就可</description></item><item><title>sudoers免密码</title><link>https://qcute.github.io/posts/shell/sudoers/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/sudoers/</guid><description>修改 /etc/sudoers Debian/Ubuntu # User privilege specification root ALL=(ALL:ALL) ALL # Allow members of group sudo to execute any command %sudo ALL=(ALL:ALL) ALL # See sudoers(5) for more information on &amp;#34;@include&amp;#34; directives: user ALL=(ALL) NOPASSWD:ALL RedHat/CentOS/RockyLinux ## Allow root to run any commands anywhere root ALL=(ALL) ALL user ALL=(ALL) NOPASSWD:ALL ## Allows members of the &amp;#39;sys&amp;#39; group to run networking, software, ## service management apps and more. # %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS ## Allows people in group wheel to run all commands %wheel ALL=(ALL) ALL ## Same thing without a password %wheel</description></item><item><title>记录一次RockyLinux UEFI磁盘迁移(扩展)</title><link>https://qcute.github.io/posts/shell/disk-copy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/disk-copy/</guid><description>使用任意软件, 例如傲梅, 进行磁盘一比一直接克隆 从新硬盘启动系统, 出现卡住的情况, 一般是复制的时候EFI分区UUID更改了(生成新的) A stop job is running for dev-disk-by\x2duuid-6C02\x2dB99B.device 等待一会后, 键入root密码, 进入紧急模式 使用blki</description></item><item><title>记一次bash的while循环中使用escript的问题</title><link>https://qcute.github.io/posts/shell/while-escript/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/while-escript/</guid><description>问题 在一次写脚本时，偶然发现了当Escript在Bash的while中使用时，循环里明明有很多次，但是Escript却只执行了一次的问题。 Escript执行脚本test.erl时，启动命令如下 test.erl -B -- -root</description></item><item><title>软链接路径tab补全斜杠号</title><link>https://qcute.github.io/posts/shell/input-rc/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/input-rc/</guid><description>修改 /etc/inputrc # Completed names which are symbolic links to # directories have a slash appended. set mark-symlinked-directories on 这样, 软链接就可以像普通目录一样补全斜杠/号了 不过, 删除的时候就要小心了, 不要带上后面的斜杠/号, 不然就会把源目录一起删掉</description></item><item><title>使用RPM仓库安装Prometheus</title><link>https://qcute.github.io/posts/shell/prometheus/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/prometheus/</guid><description>1. 安装prometheus/grafana/alertmanager # rpm repo # https://github.com/lest/prometheus-rpm cat &amp;gt; /etc/yum.repos.d/prometheus.repo &amp;lt;&amp;lt; EOF [prometheus] name=prometheus baseurl=https://packagecloud.io/prometheus-rpm/release/el/\$releasever/\$basearch repo_gpgcheck=1 enabled=1 gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm gpgcheck=1 metadata_expire=300 EOF # update cache dnf makecache # grafana dnf install grafana -y systemctl start grafana # prometheus dnf install prometheus -y # exporter cat &amp;gt;&amp;gt; /etc/prometheus/prometheus.yml &amp;lt;&amp;lt; EOF - job_name: &amp;#34;node_exporter&amp;#34; static_configs: - targets: [&amp;#34;localhost:9100&amp;#34;] - job_name: &amp;#34;mysqld_exporter&amp;#34; static_configs: - targets: [&amp;#34;localhost:9104&amp;#34;] - job_name: &amp;#34;process_exporter&amp;#34; static_configs: -</description></item><item><title>一个简单的SSH Pass脚本</title><link>https://qcute.github.io/posts/shell/ssh-pass/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/ssh-pass/</guid><description>sshpass #!/usr/bin/env bash # sshpass - use command line password with ssh # inspire by https://github.com/huan/sshpass.sh # ref to https://www.exratione.com/2014/08/bash-script-ssh-automation-without-a-password-prompt/ # the origin sshpass pass passphrase by pipe, but Symfony Process pipe need --enable-sigchild # examples: # sshpass &amp;lt;ssh or key passphrase&amp;gt; ssh &amp;lt;ssh options&amp;gt; # sshpass &amp;lt;ssh or key passphrase&amp;gt; scp &amp;lt;scp options&amp;gt; # sshpass &amp;lt;ssh or key passphrase&amp;gt; rsync &amp;lt;rsync options&amp;gt; # sshpass &amp;lt;ssh or key passphrase&amp;gt; git &amp;lt;git options&amp;gt; # sshpass &amp;lt;ssh or key passphrase&amp;gt; svn &amp;lt;svn options&amp;gt; if [[ -n &amp;#34;${SSH_ASKPASS_PASSWORD}&amp;#34; ]];then cat &amp;lt;&amp;lt;&amp;lt; &amp;#34;${SSH_ASKPASS_PASSWORD}&amp;#34; else export SSH_ASKPASS=&amp;#34;$0&amp;#34; export SSH_ASKPASS_PASSWORD=&amp;#34;$1&amp;#34; export DISPLAY=:0 shift setsid &amp;#34;$@&amp;#34; &amp;lt;/dev/null</description></item><item><title>一个简单的双向代理</title><link>https://qcute.github.io/posts/shell/proxy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/proxy/</guid><description>1. 使用fifo和nc # client -&amp;gt; proxy:8974 -&amp;gt; server:8998 rm -f /tmp/fifo &amp;amp;&amp;amp; mkfifo /tmp/fifo &amp;amp;&amp;amp; nc -lkp 8974 &amp;lt; /tmp/fifo | nc -lkp 8998 &amp;gt; /tmp/fifo 2. 使用socat # client -&amp;gt; proxy:8974 -&amp;gt; server:8998 socat TCP4-LISTEN:8974,reuseaddr,fork TCP4:127.0.0.1:8998</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on 轻作</title><link>https://qcute.github.io/categories/shell/</link><description>Recent content in Shell on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>KVM调整磁盘大小</title><link>https://qcute.github.io/posts/shell/kvm-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/kvm-resize/</guid><description>&lt;h1 id="一创建新空间并复制旧数据">一、创建新空间并复制旧数据&lt;/h1>
+&lt;ul>
+&lt;li>1.创建一块大小100G的空硬盘&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">qemu-img create -f qcow2 new.qcow2 100G
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>2.使用virt-resize进行对要扩大的分区进行扩容&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">virt-resize --expand /dev/sda1 old.qcow2 new.qcow2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>virt-resize 在 guestfs-tools 或者 libguestfs-tools 上&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="二直接扩大磁盘的大小">二、直接扩大磁盘的大小&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">qemu-img resize old.qcow2 +10G
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="三完成后使用-qemu-img-和-virt-df-查看镜像信息">三、完成后使用 qemu-img 和 virt-df 查看镜像信息&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ qemu-img info new.qcow2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">image: new.qcow2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">file format: qcow2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">virtual size: &lt;span class="m">32&lt;/span> GiB &lt;span class="o">(&lt;/span>&lt;span class="m">34359738368&lt;/span> bytes&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">disk size: &lt;span class="m">16&lt;/span> GiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cluster_size: &lt;span class="m">65536&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Format specific information:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> compat: 1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> compression type: zlib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> lazy refcounts: &lt;span class="nb">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> refcount bits: &lt;span class="m">16&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> corrupt: &lt;span class="nb">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> extended l2: &lt;span class="nb">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ virt-df new.qcow2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Filesystem 1K-blocks Used Available Use%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">new.qcow2:/dev/sda1 &lt;span class="m">6054432&lt;/span> &lt;span class="m">5122484&lt;/span> &lt;span class="m">603452&lt;/span> 85%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">new.qcow2:/dev/sda5 &lt;span class="m">10264092&lt;/span> &lt;span class="m">509272&lt;/span> &lt;span class="m">9211844&lt;/span> 5%
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>RockyLinux调整分区大小</title><link>https://qcute.github.io/posts/shell/lv-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/lv-resize/</guid><description>&lt;ol>
+&lt;li>
+&lt;p>先备份整个&lt;a href="">home&lt;/a>目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>卸载&lt;a href="">home&lt;/a>目录&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">umount /home
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>移除&lt;a href="">home&lt;/a>卷&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">lvremove /dev/mapper/rl-home
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>调整&lt;a href="">home&lt;/a>卷大小&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">lvresize -L -10G /dev/mapper/rl-home
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>调整&lt;a href="">root&lt;/a>卷大小&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">lvextend -L +10G /dev/mapper/rl-root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>同步&lt;a href="">root&lt;/a>卷大小&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">xfs_growfs /dev/mapper/rl-root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
+&lt;li>使用&lt;a href="">pvs&lt;/a>查看卷&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl"> PV VG Fmt Attr PSize PFree
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /dev/sda3 rl lvm2 a-- &amp;lt;120.00g &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="8">
+&lt;li>将剩余空间分配给&lt;a href="">home&lt;/a>卷&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">lvcreate -l +100%Free -n home rl
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="9">
+&lt;li>写入分区&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">mkfs.xfs /dev/mapper/rl-home
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="10">
+&lt;li>挂载&lt;a href="">home&lt;/a>卷&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">mount /dev/mapper/rl-home /home
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Service Unit User问题</title><link>https://qcute.github.io/posts/shell/service-unit-user/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/service-unit-user/</guid><description>&lt;p>今天发现php的&lt;a href="https://www.php.net/manual/zh/function.getenv.php">getenv&lt;/a>函数返回false&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;HOME&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于是系统是运行在system daemon下的, 查看了service unit, 里面并无指定具体的user&lt;/p>
+&lt;p>所以, 在Service里面添加User&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>Service&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># specific user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">User&lt;/span>&lt;span class="o">=&lt;/span>root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>函数就可以正确获取到数据了&lt;/p></description></item><item><title>sudoers免密码</title><link>https://qcute.github.io/posts/shell/sudoers/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/sudoers/</guid><description>&lt;p>修改 &lt;a href="">/etc/sudoers&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://www.debian.org/">Debian&lt;/a>/&lt;a href="https://ubuntu.com/">Ubuntu&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># User privilege specification&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root &lt;span class="nv">ALL&lt;/span>&lt;span class="o">=(&lt;/span>ALL:ALL&lt;span class="o">)&lt;/span> ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Allow members of group sudo to execute any command&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">%sudo &lt;span class="nv">ALL&lt;/span>&lt;span class="o">=(&lt;/span>ALL:ALL&lt;span class="o">)&lt;/span> ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># See sudoers(5) for more information on &amp;#34;@include&amp;#34; directives:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user &lt;span class="nv">ALL&lt;/span>&lt;span class="o">=(&lt;/span>ALL&lt;span class="o">)&lt;/span> NOPASSWD:ALL
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>&lt;a href="https://www.redhat.com/">RedHat&lt;/a>/&lt;a href="https://www.centos.org/">CentOS&lt;/a>/&lt;a href="https://rockylinux.org/">RockyLinux&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">## Allow root to run any commands anywhere
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root ALL=(ALL) ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user ALL=(ALL) NOPASSWD:ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">## Allows members of the &amp;#39;sys&amp;#39; group to run networking, software,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">## service management apps and more.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">## Allows people in group wheel to run all commands
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">%wheel ALL=(ALL) ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">## Same thing without a password
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">%wheel ALL=(ALL) NOPASSWD: ALL
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>记录一次RockyLinux UEFI磁盘迁移(扩展)</title><link>https://qcute.github.io/posts/shell/disk-copy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/disk-copy/</guid><description>&lt;ol>
+&lt;li>
+&lt;p>使用任意软件, 例如&lt;a href="https://www.disktool.cn/">傲梅&lt;/a>, 进行磁盘一比一直接克隆&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>从新硬盘启动系统, 出现卡住的情况, 一般是复制的时候EFI分区UUID更改了(生成新的)&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">A stop job is running &lt;span class="k">for&lt;/span> dev-disk-by&lt;span class="se">\x&lt;/span>2duuid-6C02&lt;span class="se">\x&lt;/span>2dB99B.device
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>等待一会后, 键入root密码, 进入紧急模式&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>使用&lt;a href="">blkid&lt;/a>查看块UUID, &lt;a href="">/dev/sda1&lt;/a>正是EFI分区&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">/dev/sda1: &lt;span class="nv">SEC_TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;msdos&amp;#34;&lt;/span> &lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;0000-4823&amp;#34;&lt;/span> &lt;span class="nv">BLOCK_SIZE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;512&amp;#34;&lt;/span> &lt;span class="nv">TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;vfat&amp;#34;&lt;/span> &lt;span class="nv">PARTLABEL&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;EFI system partition&amp;#34;&lt;/span> &lt;span class="nv">PARTUUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;182ddd5c-fc1b-11ee-bc5d-c3b5b8bd8720&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda2: &lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;fa5133df-3efe-40d8-8386-2599e0bc6417&amp;#34;&lt;/span> &lt;span class="nv">BLOCK_SIZE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;512&amp;#34;&lt;/span> &lt;span class="nv">TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;xfs&amp;#34;&lt;/span> &lt;span class="nv">PARTUUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;182ddd60-fc1b-11ee-bc5d-c3b5b8bd8720&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda3: &lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;LCzkNd-2bJU-hk6q-YIeS-RBnM-XY0f-u91TAG&amp;#34;&lt;/span> &lt;span class="nv">TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;LVM2_member&amp;#34;&lt;/span> &lt;span class="nv">PARTUUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;182ddd64-fc1b-11ee-bc5d-c3b5b8bd8720&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-root: &lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;0e5e4a9c-cbb1-40b4-ac83-7a5021b10e31&amp;#34;&lt;/span> &lt;span class="nv">BLOCK_SIZE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;512&amp;#34;&lt;/span> &lt;span class="nv">TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;xfs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-swap: &lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;717d74bc-390f-47b5-83ed-e9322bbcbbe3&amp;#34;&lt;/span> &lt;span class="nv">TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;swap&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-home: &lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;013f7c16-aaa4-4346-b9c8-4bb02cc456cd&amp;#34;&lt;/span> &lt;span class="nv">BLOCK_SIZE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;512&amp;#34;&lt;/span> &lt;span class="nv">TYPE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;xfs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>修改&lt;a href="">/etc/fstab&lt;/a>上&lt;a href="">/boot/efi&lt;/a>的UUID, 重启即可&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># /etc/fstab&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Created by anaconda on Thu Apr 7 07:46:10 2022&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Accessible filesystems, by reference, are maintained under &amp;#39;/dev/disk/&amp;#39;.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># After editing this file, run &amp;#39;systemctl daemon-reload&amp;#39; to update systemd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># units generated from this file.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-root / xfs defaults &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>fa5133df-3efe-40d8-8386-2599e0bc6417 /boot xfs defaults &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>0000-4823 /boot/efi vfat &lt;span class="nv">umask&lt;/span>&lt;span class="o">=&lt;/span>0077,shortname&lt;span class="o">=&lt;/span>winnt &lt;span class="m">0&lt;/span> &lt;span class="m">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-home /home xfs defaults &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-swap none swap defaults &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>调整磁盘大小&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">parted /dev/sda
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>对LVM分区进行扩容&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">resizepart &lt;span class="m">3&lt;/span> 100%
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>对分区物理卷进行扩容&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">pvresize /dev/sda3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>使用&lt;a href="">pvs&lt;/a>查看卷&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl"> PV VG Fmt Attr PSize PFree
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /dev/sda3 rl lvm2 a-- 929.92g &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>使用&lt;a href="">vgdisplay&lt;/a>查看卷组情况&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl"> --- Volume group ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VG Name rl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> System ID
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Format lvm2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Metadata Areas &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Metadata Sequence No &lt;span class="m">7&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VG Access read/write
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VG Status resizable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MAX LV &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Cur LV &lt;span class="m">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Open LV &lt;span class="m">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Max PV &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Cur PV &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Act PV &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VG Size 929.92 GiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PE Size 4.00 MiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Total PE &lt;span class="m">238060&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Alloc PE / Size &lt;span class="m">28211&lt;/span> / &amp;lt;110.20 GiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Free PE / Size &lt;span class="m">209849&lt;/span> / 819.72 GiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VG UUID rFnljf-9GxD-tS5t-8b6e-esEc-E2Jc-Lg2tpC
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
+&lt;li>扩展&lt;a href="">root&lt;/a>卷大小&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">lvextend -l +100%FREE /dev/mapper/rl-root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="8">
+&lt;li>同步&lt;a href="">root&lt;/a>卷文件系统&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">xfs_growfs /dev/mapper/rl-root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="9">
+&lt;li>使用&lt;a href="">df -h&lt;/a>查看磁盘情况&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">Filesystem Size Used Avail Use% Mounted on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">devtmpfs 16G &lt;span class="m">0&lt;/span> 16G 0% /dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs 16G 13M 16G 1% /dev/shm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs 16G 26M 16G 1% /run
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs 16G &lt;span class="m">0&lt;/span> 16G 0% /sys/fs/cgroup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-root 913G 64G 849G 7% /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda2 1014M 251M 764M 25% /boot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda1 600M 6.0M 594M 1% /boot/efi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-home 9.6G 746M 8.9G 8% /home
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs 3.2G 32K 3.2G 1% /run/user/1000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>记一次bash的while循环中使用escript的问题</title><link>https://qcute.github.io/posts/shell/while-escript/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/while-escript/</guid><description>&lt;h3 id="问题">问题&lt;/h3>
+&lt;p>在一次写脚本时，偶然发现了当&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>在&lt;a href="https://github.com/gitGNU/gnu_bash">Bash&lt;/a>的while中使用时，循环里明明有很多次，但是&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>却只执行了一次的问题。&lt;/p>
+&lt;p>&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>执行脚本test.erl时，启动命令如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">test.erl -B -- -root /usr/lib/erlang -progname erl -- -home /home/m -- -boot no_dot_erlang -noshell -run escript start -extra test.erl
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>命令里有&lt;a href="https://www.erlang.org/doc/man/erl.html#-noshell">-noshell&lt;/a>标识，此时erlang不会启动shell&lt;/p>
+&lt;p>原因就是在&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>模式下，&lt;a href="https://github.com/erlang/otp">Erlang&lt;/a>不会启动shell，但是仍然会从stdin中读取输入，而while读取下一次内容时就会向stdin输入内容，而内容则被&lt;a href="https://github.com/erlang/otp">Erlang&lt;/a>读取了，循环也就“结束”了。&lt;/p>
+&lt;p>解决办法就是在命令行加上 &amp;lt; /dev/null 使stdin重定向到null上，也就是禁用stdin&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">escript test.erl &amp;lt; /dev/null
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或者在脚本文件的shebang行上加上&lt;a href="https://www.erlang.org/doc/man/erl.html#-noinput">-noinput&lt;/a>标识，来禁用输入&lt;/p></description></item><item><title>软链接路径tab补全斜杠号</title><link>https://qcute.github.io/posts/shell/input-rc/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/input-rc/</guid><description>&lt;p>修改 &lt;a href="">/etc/inputrc&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Completed names which are symbolic links to&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># directories have a slash appended.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> mark-symlinked-directories on
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样, 软链接就可以像普通目录一样补全斜杠&lt;a href="">/&lt;/a>号了&lt;br>
+不过, 删除的时候就要小心了, 不要带上后面的斜杠&lt;a href="">/&lt;/a>号, 不然就会把源目录一起删掉&lt;/p></description></item><item><title>使用RPM仓库安装Prometheus</title><link>https://qcute.github.io/posts/shell/prometheus/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/prometheus/</guid><description>&lt;h3 id="1-安装prometheusgrafanaalertmanager">1. 安装prometheus/grafana/alertmanager&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># rpm repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># https://github.com/lest/prometheus-rpm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat &amp;gt; /etc/yum.repos.d/prometheus.repo &lt;span class="s">&amp;lt;&amp;lt; EOF
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">[prometheus]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">name=prometheus
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">baseurl=https://packagecloud.io/prometheus-rpm/release/el/\$releasever/\$basearch
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">repo_gpgcheck=1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">enabled=1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">gpgcheck=1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">metadata_expire=300
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># update cache&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf makecache
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># grafana&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install grafana -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start grafana
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># prometheus&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install prometheus -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># exporter&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat &amp;gt;&amp;gt; /etc/prometheus/prometheus.yml &lt;span class="s">&amp;lt;&amp;lt; EOF
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> - job_name: &amp;#34;node_exporter&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> static_configs:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> - targets: [&amp;#34;localhost:9100&amp;#34;]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> - job_name: &amp;#34;mysqld_exporter&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> static_configs:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> - targets: [&amp;#34;localhost:9104&amp;#34;]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> - job_name: &amp;#34;process_exporter&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> static_configs:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> - targets: [&amp;#34;localhost:9256&amp;#34;]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start prometheus
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># alert manager&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install alertmanager -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start alertmanager
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2-安装node_exportermysqld_exporterprocess_exporter">2. 安装node_exporter/mysqld_exporter/process_exporter&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## node expoeter ##&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install node_exporter -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start node_exporter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## mysql exporter ##&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install mysqld_exporter -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># mysql ini config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> -n &lt;span class="s1">&amp;#39;MYSQLD_EXPORTER_OPTS=&amp;#34;--config.my-cnf=/etc/prometheus/mysqld_exporter.ini&amp;#34;&amp;#39;&lt;/span> &amp;gt; /etc/default/mysqld_exporter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># mysql init config file&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat &amp;gt; /etc/prometheus/mysqld_exporter.ini &lt;span class="s">&amp;lt;&amp;lt; EOF
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">[client]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">host=localhost
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">socket=/var/lib/mysql/mysql.sock
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">port=3306
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">user=root
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">password=root
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start mysqld_exporter
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## process exporter ##&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install process_exporter -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start process_exporter
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>一个简单的SSH Pass脚本</title><link>https://qcute.github.io/posts/shell/ssh-pass/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/ssh-pass/</guid><description>&lt;ul>
+&lt;li>&lt;a href="">sshpass&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="c1"># sshpass - use command line password with ssh&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># inspire by https://github.com/huan/sshpass.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ref to https://www.exratione.com/2014/08/bash-script-ssh-automation-without-a-password-prompt/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># the origin sshpass pass passphrase by pipe, but Symfony Process pipe need --enable-sigchild&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># examples:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sshpass &amp;lt;ssh or key passphrase&amp;gt; ssh &amp;lt;ssh options&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sshpass &amp;lt;ssh or key passphrase&amp;gt; scp &amp;lt;scp options&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sshpass &amp;lt;ssh or key passphrase&amp;gt; rsync &amp;lt;rsync options&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sshpass &amp;lt;ssh or key passphrase&amp;gt; git &amp;lt;git options&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sshpass &amp;lt;ssh or key passphrase&amp;gt; svn &amp;lt;svn options&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="o">[[&lt;/span> -n &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">SSH_ASKPASS_PASSWORD&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">]]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cat &lt;span class="o">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">SSH_ASKPASS_PASSWORD&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">export&lt;/span> &lt;span class="nv">SSH_ASKPASS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$0&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">export&lt;/span> &lt;span class="nv">SSH_ASKPASS_PASSWORD&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$1&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">export&lt;/span> &lt;span class="nv">DISPLAY&lt;/span>&lt;span class="o">=&lt;/span>:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">shift&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> setsid &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;lt;/dev/null
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">fi&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;a href="">sshpass.cmd&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bat" data-lang="bat">&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">echo&lt;/span> off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">%SSH_ASKPASS_PASSWORD%&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">set&lt;/span> &lt;span class="nv">SSH_ASKPASS&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="nv">%~dp0%0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">set&lt;/span> &lt;span class="nv">SSH_ASKPASS_PASSWORD&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="nv">%1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">set&lt;/span> &lt;span class="nv">DISPLAY&lt;/span>&lt;span class="p">=&lt;/span>:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">shift&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cmd /c &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">%2&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="nv">%3&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="nv">%4&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="nv">%5&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="nv">%6&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="nv">%7&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="nv">%8&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="nv">%9&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">echo&lt;/span> &lt;span class="nv">%SSH_ASKPASS_PASSWORD%&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用&lt;/p></description></item><item><title>一个简单的双向代理</title><link>https://qcute.github.io/posts/shell/proxy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/proxy/</guid><description>&lt;h3 id="1-使用fifo和nc">1. 使用fifo和nc&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># client -&amp;gt; proxy:8974 -&amp;gt; server:8998&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f /tmp/fifo &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> mkfifo /tmp/fifo &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> nc -lkp &lt;span class="m">8974&lt;/span> &amp;lt; /tmp/fifo &lt;span class="p">|&lt;/span> nc -lkp &lt;span class="m">8998&lt;/span> &amp;gt; /tmp/fifo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2-使用socat">2. 使用socat&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># client -&amp;gt; proxy:8974 -&amp;gt; server:8998&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat TCP4-LISTEN:8974,reuseaddr,fork TCP4:127.0.0.1:8998
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
