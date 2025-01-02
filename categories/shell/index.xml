@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on 轻作</title><link>https://qcute.github.io/categories/shell/</link><description>Recent content in Shell on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>KVM调整磁盘大小</title><link>https://qcute.github.io/posts/shell/kvm-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/kvm-resize/</guid><description>&lt;h1 id="一创建新空间并复制旧数据">一、创建新空间并复制旧数据&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell on 轻作</title><link>https://qcute.github.io/categories/shell/</link><description>Recent content in Shell on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>759276607@qq.com (QCute)</managingEditor><webMaster>759276607@qq.com (QCute)</webMaster><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>KVM调整磁盘大小</title><link>https://qcute.github.io/posts/shell/kvm-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/kvm-resize/</guid><description>&lt;h1 id="一创建新空间并复制旧数据">一、创建新空间并复制旧数据&lt;/h1>
 &lt;ul>
 &lt;li>1.创建一块大小100G的空硬盘&lt;/li>
 &lt;/ul>
@@ -31,7 +31,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Filesystem 1K-blocks Used Available Use%
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">new.qcow2:/dev/sda1 &lt;span class="m">6054432&lt;/span> &lt;span class="m">5122484&lt;/span> &lt;span class="m">603452&lt;/span> 85%
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">new.qcow2:/dev/sda5 &lt;span class="m">10264092&lt;/span> &lt;span class="m">509272&lt;/span> &lt;span class="m">9211844&lt;/span> 5%
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>RockyLinux调整分区大小</title><link>https://qcute.github.io/posts/shell/lv-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/lv-resize/</guid><description>&lt;ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>RockyLinux调整分区大小</title><link>https://qcute.github.io/posts/shell/lv-resize/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/lv-resize/</guid><description>&lt;ol>
 &lt;li>
 &lt;p>先备份整个&lt;a href="">home&lt;/a>目录&lt;/p>
 &lt;/li>
@@ -73,14 +73,14 @@
 &lt;li>挂载&lt;a href="">home&lt;/a>卷&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">mount /dev/mapper/rl-home /home
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Service Unit User问题</title><link>https://qcute.github.io/posts/shell/service-unit-user/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/service-unit-user/</guid><description>&lt;p>今天发现php的&lt;a href="https://www.php.net/manual/zh/function.getenv.php">getenv&lt;/a>函数返回false&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Service Unit User问题</title><link>https://qcute.github.io/posts/shell/service-unit-user/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/service-unit-user/</guid><description>&lt;p>今天发现php的&lt;a href="https://www.php.net/manual/zh/function.getenv.php">getenv&lt;/a>函数返回false&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;HOME&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于是系统是运行在system daemon下的, 查看了service unit, 里面并无指定具体的user&lt;/p>
 &lt;p>所以, 在Service里面添加User&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>Service&lt;span class="o">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># specific user&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">User&lt;/span>&lt;span class="o">=&lt;/span>root
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>函数就可以正确获取到数据了&lt;/p></description></item><item><title>sudoers免密码</title><link>https://qcute.github.io/posts/shell/sudoers/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/sudoers/</guid><description>&lt;p>修改 &lt;a href="">/etc/sudoers&lt;/a>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>函数就可以正确获取到数据了&lt;/p></description></item><item><title>sudoers免密码</title><link>https://qcute.github.io/posts/shell/sudoers/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/sudoers/</guid><description>&lt;p>修改 &lt;a href="">/etc/sudoers&lt;/a>&lt;/p>
 &lt;ol>
 &lt;li>&lt;a href="https://www.debian.org/">Debian&lt;/a>/&lt;a href="https://ubuntu.com/">Ubuntu&lt;/a>&lt;/li>
 &lt;/ol>
@@ -107,7 +107,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">## Same thing without a password
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">%wheel ALL=(ALL) NOPASSWD: ALL
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>记录一次RockyLinux UEFI磁盘迁移(扩展)</title><link>https://qcute.github.io/posts/shell/disk-copy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/disk-copy/</guid><description>&lt;ol>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>记录一次RockyLinux UEFI磁盘迁移(扩展)</title><link>https://qcute.github.io/posts/shell/disk-copy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/disk-copy/</guid><description>&lt;ol>
 &lt;li>
 &lt;p>使用任意软件, 例如&lt;a href="https://www.disktool.cn/">傲梅&lt;/a>, 进行磁盘一比一直接克隆&lt;/p>
 &lt;/li>
@@ -207,7 +207,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda1 600M 6.0M 594M 1% /boot/efi
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/mapper/rl-home 9.6G 746M 8.9G 8% /home
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs 3.2G 32K 3.2G 1% /run/user/1000
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>记一次bash的while循环中使用escript的问题</title><link>https://qcute.github.io/posts/shell/while-escript/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/while-escript/</guid><description>&lt;h3 id="问题">问题&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>记一次bash的while循环中使用escript的问题</title><link>https://qcute.github.io/posts/shell/while-escript/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/while-escript/</guid><description>&lt;h3 id="问题">问题&lt;/h3>
 &lt;p>在一次写脚本时，偶然发现了当&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>在&lt;a href="https://github.com/gitGNU/gnu_bash">Bash&lt;/a>的while中使用时，循环里明明有很多次，但是&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>却只执行了一次的问题。&lt;/p>
 &lt;p>&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>执行脚本test.erl时，启动命令如下&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">test.erl -B -- -root /usr/lib/erlang -progname erl -- -home /home/m -- -boot no_dot_erlang -noshell -run escript start -extra test.erl
@@ -215,12 +215,12 @@
 &lt;p>原因就是在&lt;a href="https://www.erlang.org/doc/man/escript.html">Escript&lt;/a>模式下，&lt;a href="https://github.com/erlang/otp">Erlang&lt;/a>不会启动shell，但是仍然会从stdin中读取输入，而while读取下一次内容时就会向stdin输入内容，而内容则被&lt;a href="https://github.com/erlang/otp">Erlang&lt;/a>读取了，循环也就“结束”了。&lt;/p>
 &lt;p>解决办法就是在命令行加上 &amp;lt; /dev/null 使stdin重定向到null上，也就是禁用stdin&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">escript test.erl &amp;lt; /dev/null
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或者在脚本文件的shebang行上加上&lt;a href="https://www.erlang.org/doc/man/erl.html#-noinput">-noinput&lt;/a>标识，来禁用输入&lt;/p></description></item><item><title>软链接路径tab补全斜杠号</title><link>https://qcute.github.io/posts/shell/input-rc/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/input-rc/</guid><description>&lt;p>修改 &lt;a href="">/etc/inputrc&lt;/a>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或者在脚本文件的shebang行上加上&lt;a href="https://www.erlang.org/doc/man/erl.html#-noinput">-noinput&lt;/a>标识，来禁用输入&lt;/p></description></item><item><title>软链接路径tab补全斜杠号</title><link>https://qcute.github.io/posts/shell/input-rc/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/input-rc/</guid><description>&lt;p>修改 &lt;a href="">/etc/inputrc&lt;/a>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Completed names which are symbolic links to&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># directories have a slash appended.&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> mark-symlinked-directories on
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样, 软链接就可以像普通目录一样补全斜杠&lt;a href="">/&lt;/a>号了&lt;br>
-不过, 删除的时候就要小心了, 不要带上后面的斜杠&lt;a href="">/&lt;/a>号, 不然就会把源目录一起删掉&lt;/p></description></item><item><title>使用RPM仓库安装Prometheus</title><link>https://qcute.github.io/posts/shell/prometheus/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/prometheus/</guid><description>&lt;h3 id="1-安装prometheusgrafanaalertmanager">1. 安装prometheus/grafana/alertmanager&lt;/h3>
+不过, 删除的时候就要小心了, 不要带上后面的斜杠&lt;a href="">/&lt;/a>号, 不然就会把源目录一起删掉&lt;/p></description></item><item><title>使用RPM仓库安装Prometheus</title><link>https://qcute.github.io/posts/shell/prometheus/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/prometheus/</guid><description>&lt;h3 id="1-安装prometheusgrafanaalertmanager">1. 安装prometheus/grafana/alertmanager&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># rpm repo&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># https://github.com/lest/prometheus-rpm&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat &amp;gt; /etc/yum.repos.d/prometheus.repo &lt;span class="s">&amp;lt;&amp;lt; EOF
@@ -280,7 +280,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## process exporter ##&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install process_exporter -y
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start process_exporter
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>一个简单的SSH Pass脚本</title><link>https://qcute.github.io/posts/shell/ssh-pass/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/ssh-pass/</guid><description>&lt;ul>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>一个简单的SSH Pass脚本</title><link>https://qcute.github.io/posts/shell/ssh-pass/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/ssh-pass/</guid><description>&lt;ul>
 &lt;li>&lt;a href="">sshpass&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
@@ -317,7 +317,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">(&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">echo&lt;/span> &lt;span class="nv">%SSH_ASKPASS_PASSWORD%&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用&lt;/p></description></item><item><title>一个简单的双向代理</title><link>https://qcute.github.io/posts/shell/proxy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><guid>https://qcute.github.io/posts/shell/proxy/</guid><description>&lt;h3 id="1-使用fifo和nc">1. 使用fifo和nc&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用&lt;/p></description></item><item><title>一个简单的双向代理</title><link>https://qcute.github.io/posts/shell/proxy/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/shell/proxy/</guid><description>&lt;h3 id="1-使用fifo和nc">1. 使用fifo和nc&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># client -&amp;gt; proxy:8974 -&amp;gt; server:8998&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f /tmp/fifo &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> mkfifo /tmp/fifo &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> nc -lkp &lt;span class="m">8974&lt;/span> &amp;lt; /tmp/fifo &lt;span class="p">|&lt;/span> nc -lkp &lt;span class="m">8998&lt;/span> &amp;gt; /tmp/fifo
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2-使用socat">2. 使用socat&lt;/h3>
