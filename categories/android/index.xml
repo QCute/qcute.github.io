@@ -6,14 +6,12 @@
 &lt;li>No activity found to handle intent&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>android.intent.action.OPEN_DOCUMENT&lt;/p>
-&lt;/blockquote>
+&lt;p>android.intent.action.OPEN_DOCUMENT&lt;/p>&lt;/blockquote>
 &lt;ul>
 &lt;li>No activity found to handle intent&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>android.intent.action.OPEN_DOCUMENT_TREE&lt;/p>
-&lt;/blockquote>
+&lt;p>android.intent.action.OPEN_DOCUMENT_TREE&lt;/p>&lt;/blockquote>
 &lt;p>奇怪了个怪, 按道理像文件管理器等应该会响应这个或者这类Intent吧&lt;/p>
 &lt;p>然后查看&lt;a href="https://developer.android.com/guide/components/intents-filters">Intent Filters&lt;/a>, 看下有哪些Activity响应这个Intent&lt;/p></description></item><item><title>Xposed XSharedPreferences在安卓N以后及解决方案</title><link>https://qcute.github.io/posts/android/xposed-shared-preferences/</link><pubDate>Tue, 03 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/android/xposed-shared-preferences/</guid><description>&lt;p>由于在&lt;a href="https://www.android.com">Android&lt;/a> 7 (SDK 24) 及以后 &lt;a href="https://developer.android.com/reference/android/content/Context#MODE_WORLD_READABLE">Context.MODE_WORLD_READABLE&lt;/a> 被废弃&lt;br>
 导致&lt;a href="https://repo.xposed.info/">Xposed&lt;/a> &lt;a href="https://api.xposed.info/reference/de/robv/android/xposed/XSharedPreferences.html">XSharedPreference&lt;/a>不可用&lt;/p>

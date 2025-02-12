@@ -41,5 +41,4 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">echo&lt;/span> &lt;span class="nv">$process&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="na">getOutput&lt;/span>&lt;span class="p">();&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>参考&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/symfony/symfony/issues/12518">Controlling an interactive process&lt;/a>&lt;/p>
-&lt;/blockquote></description></item></channel></rss>
+&lt;p>&lt;a href="https://github.com/symfony/symfony/issues/12518">Controlling an interactive process&lt;/a>&lt;/p>&lt;/blockquote></description></item></channel></rss>

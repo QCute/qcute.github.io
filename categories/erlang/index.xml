@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Erlang on 轻作</title><link>https://qcute.github.io/categories/erlang/</link><description>Recent content in Erlang on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>759276607@qq.com (QCute)</managingEditor><webMaster>759276607@qq.com (QCute)</webMaster><lastBuildDate>Wed, 04 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/erlang/index.xml" rel="self" type="application/rss+xml"/><item><title>Erlang ETS内部数据结构</title><link>https://qcute.github.io/posts/erlang/beam-ets/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/beam-ets/</guid><description>&lt;h3 id="1-setbagduplicate_bag使用的是哈希表">1. set/bag/duplicate_bag使用的是哈希表&lt;/h3>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L352-L353">IS_HASH_TABLE&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L352-L353">IS_HASH_TABLE&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;h3 id="2-ordered_set使用的是avl树">2. ordered_set使用的是AVL树&lt;/h3>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L354-L355">IS_TREE_TABLE&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L354-L355">IS_TREE_TABLE&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>为了提升并发写性能, 在OTP22之后引入了CAS(contention adapting search)树&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L356-L357">IS_CATREE_TABLE&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L356-L357">IS_CATREE_TABLE&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>参考&lt;a href="https://erlang.org/">Erlang&lt;/a>&lt;a href="https://www.erlang.org/blog/">博客&lt;/a>&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://www.erlang.org/blog/the-new-scalable-ets-ordered_set/">The New Scalable ETS ordered_set&lt;/a>&lt;/p>
-&lt;/blockquote></description></item><item><title>Erlang持久对象(Persistent Term)</title><link>https://qcute.github.io/posts/erlang/persistent-term/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/persistent-term/</guid><description>&lt;p>持久对象(Persistent Term)是&lt;a href="https://github.com/erlang.otp">OTP-21.3&lt;/a>之后引入的, 它的&lt;a href="">get&lt;/a>是非复制(Copy)的&lt;/p>
+&lt;p>&lt;a href="https://www.erlang.org/blog/the-new-scalable-ets-ordered_set/">The New Scalable ETS ordered_set&lt;/a>&lt;/p>&lt;/blockquote></description></item><item><title>Erlang持久对象(Persistent Term)</title><link>https://qcute.github.io/posts/erlang/persistent-term/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/persistent-term/</guid><description>&lt;p>持久对象(Persistent Term)是&lt;a href="https://github.com/erlang.otp">OTP-21.3&lt;/a>之后引入的, 它的&lt;a href="">get&lt;/a>是非复制(Copy)的&lt;/p>
 &lt;blockquote>
 &lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L477-L491">persistent_term_get_1&lt;/a>
 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L962-L980">lookup&lt;/a>
-&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L66-L69">get_bucket&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L66-L69">get_bucket&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>而&lt;a href="">ETS&lt;/a>的&lt;a href="">get&lt;/a>是复制(Copy)的&lt;/p>
 &lt;blockquote>
 &lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db.c#L2496-L2519">ets_lookup_2&lt;/a>
 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_hash.c#L1207-L1207">db_get_hash&lt;/a>
-&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_hash.c#L1185-L1185">build_term_list&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_hash.c#L1185-L1185">build_term_list&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>在游戏服务器里面, 配置表通常会用&lt;a href="">ETS&lt;/a>或者&lt;a href="">beam&lt;/a>进行热更新, &lt;a href="">ETS&lt;/a>每一次&lt;a href="">get&lt;/a>都会复制, &lt;a href="">beam&lt;/a>每一次调用, 也是要重新构造一份数据的。如果你使用&lt;a href="https://github.com/erlang.otp">OTP-21.3&lt;/a>之后的版本, 可以结合持久对象(Persistent Term)做成&lt;a href="">OOP&lt;/a>那样的单例模式, 进一步提升计算性能和降低内存消耗。&lt;/p></description></item><item><title>Erlang更新Record的优化</title><link>https://qcute.github.io/posts/erlang/beam-set-tuple-element/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/beam-set-tuple-element/</guid><description>&lt;p>Record的更新使用的是&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/preloaded/src/erlang.erl#L2589">erlang:setelement/3&lt;/a>, 在更新多个字段的时候很浪费性能以及内存&lt;br>
 后来引入了一个破坏性的优化指令: set_tuple_element&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-erl" data-lang="erl">&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span>&lt;span class="ni">record&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">record&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">d&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">}).&lt;/span>
@@ -164,46 +158,58 @@
 &lt;p>可见, 前几种调用方式差距不算很大, 只是最后apply lambda函数的情况下差距较大。在&lt;a href="">OTP-24 with (JIT)&lt;/a>之后, 想要抽象也不需要付出很大的性能代价, 放心尽情地使用吧。&lt;/p></description></item><item><title>Erlang进程表</title><link>https://qcute.github.io/posts/erlang/beam-process-table/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/beam-process-table/</guid><description>&lt;p>以前以为进程表是用B树之类的存储, 后来才发现是用索引表&lt;/p>
 &lt;p>参考&lt;a href="https://erlang.org/">Erlang&lt;/a>&lt;a href="https://www.erlang.org/doc/apps/erts/internal_docs.html">内部文档&lt;/a>&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://www.erlang.org/doc/apps/erts/ptables">进程和端口表&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://www.erlang.org/doc/apps/erts/ptables">进程和端口表&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>代码&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_ptab.h#L122-L147">ErtsPTab&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_ptab.h#L122-L147">ErtsPTab&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>学习了&lt;/p></description></item><item><title>Erlang进程字典</title><link>https://qcute.github.io/posts/erlang/process-dict/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/process-dict/</guid><description>&lt;p>&lt;a href="">进程字典&lt;/a>使用的是hash分片方式存放&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.h#L31-L31">ProcDict&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.h#L31-L31">ProcDict&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>&lt;a href="">进程字典&lt;/a>的&lt;a href="">get&lt;/a>是非复制(Copy)的&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L472-L496">pd_hash_get_with_hval&lt;/a>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L472-L496">pd_hash_get_with_hval&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;p>&lt;a href="">进程字典&lt;/a>的&lt;a href="">put&lt;/a>也是非复制(Copy)的&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L717-L741">pd_hash_put&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>存放单个时使用&lt;a href="">tuple&lt;/a>, 多个(哈希冲突), 使用&lt;a href="">list&lt;/a>, 然后线性查找。&lt;/p></description></item><item><title>Erlang热更新的实现</title><link>https://qcute.github.io/posts/erlang/code-hot-reload/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/code-hot-reload/</guid><description>&lt;h2 id="erts_code_purgererlhttpsgithubcomerlangotpblobmaint-24ertspreloadedsrcerts_code_purgererl">&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/preloaded/src/erts_code_purger.erl">erts_code_purger.erl&lt;/a>&lt;/h2>
-&lt;ul>
-&lt;li>硬清除 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/preloaded/src/erts_code_purger.erl#L117">erts_code_purger:purge/2&lt;/a>&lt;/li>
-&lt;li>软清除 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/preloaded/src/erts_code_purger.erl#L114">erts_code_purger:soft_purge/2&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="codeerlhttpsgithubcomerlangotpblobmaint-24libkernelsrccodeerl">&lt;a href="https://github.com/erlang/otp/blob/maint-24/lib/kernel/src/code.erl">code.erl&lt;/a>&lt;/h2>
-&lt;ul>
-&lt;li>加载文件(模块) &lt;a href="https://github.com/erlang/otp/blob/maint-24/lib/kernel/src/code_server.erl#L1155">code_server:load_file/3&lt;/a>&lt;/li>
-&lt;li>加载模块 &lt;a href="https://github.com/erlang/otp/blob/maint-24/lib/kernel/src/code_server.erl#L1127-L1138">code_server:try_load_module_2/6&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="两个核心函数">两个核心函数&lt;/h2>
-&lt;h3 id="erlangprepare_loading2httpsgithubcomerlangotpblobmaint-24liberlanglibertssrcerlangerll1689">&lt;a href="https://github.com/erlang/otp/blob/maint-24/lib/erlang/lib/erts/src/erlang.erl#L1689">erlang:prepare_loading/2&lt;/a>&lt;/h3>
-&lt;ul>
-&lt;li>包装函数 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/beam_bif_load.c#L246">erts_internal_prepare_loading_2&lt;/a>&lt;/li>
-&lt;li>主函数 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/beam_load.c#L107">erts_prepare_loading&lt;/a>&lt;/li>
-&lt;li>读取(解码)字节码 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/beam_file.c#L727">beamfile_read&lt;/a>&lt;/li>
-&lt;li>加载字节码 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/beam_load.c#L362">load_code&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="erlangfinish_loading1httpsgithubcomerlangotpblobmaint-24ertspreloadedsrcerlangerll978">&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/preloaded/src/erlang.erl#L978">erlang:finish_loading/1&lt;/a>&lt;/h3>
-&lt;ul>
-&lt;li>主函数 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/beam_bif_load.c#L333">finish_loading_1&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>Erlang实现函数内的循环</title><link>https://qcute.github.io/posts/erlang/erlang-loop/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/erlang-loop/</guid><description>&lt;p>&lt;a href="https://github.com/erlang/otp/">erlang&lt;/a>语义上绑定的变量是不可变的, 函数内也没有for/while/loop等循环&lt;br>
+&lt;p>&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L717-L741">pd_hash_put&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;p>存放单个时使用&lt;a href="">tuple&lt;/a>, 多个(哈希冲突), 使用&lt;a href="">list&lt;/a>, 然后线性查找。&lt;/p></description></item><item><title>Erlang热更新的实现</title><link>https://qcute.github.io/posts/erlang/code-hot-reload/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/code-hot-reload/</guid><description>&lt;h2 id="从一个基本调用开始">从一个基本调用开始&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-asm" data-lang="asm">&lt;span class="line">&lt;span class="cl">&lt;span class="err">{&lt;/span>&lt;span class="nf">function&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="no">call&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">{&lt;/span>&lt;span class="nf">label&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">{&lt;/span>&lt;span class="nf">line&lt;/span>&lt;span class="p">,[&lt;/span>&lt;span class="err">{&lt;/span>&lt;span class="no">location&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">&amp;#34;&lt;/span>&lt;span class="no">src&lt;/span>&lt;span class="err">/&lt;/span>&lt;span class="no">examples&lt;/span>&lt;span class="err">/&lt;/span>&lt;span class="no">test&lt;/span>&lt;span class="err">/&lt;/span>&lt;span class="no">test.erl&lt;/span>&lt;span class="err">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">9&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">{&lt;/span>&lt;span class="nf">func_info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">{&lt;/span>&lt;span class="no">atom&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="no">test&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">{&lt;/span>&lt;span class="no">atom&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="no">call&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">{&lt;/span>&lt;span class="nf">label&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">{&lt;/span>&lt;span class="nf">move&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">{&lt;/span>&lt;span class="no">atom&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="no">c&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">{&lt;/span>&lt;span class="no">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="err">}}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">{&lt;/span>&lt;span class="nf">line&lt;/span>&lt;span class="p">,[&lt;/span>&lt;span class="err">{&lt;/span>&lt;span class="no">location&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">&amp;#34;&lt;/span>&lt;span class="no">src&lt;/span>&lt;span class="err">/&lt;/span>&lt;span class="no">examples&lt;/span>&lt;span class="err">/&lt;/span>&lt;span class="no">test&lt;/span>&lt;span class="err">/&lt;/span>&lt;span class="no">test.erl&lt;/span>&lt;span class="err">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="err">}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">{&lt;/span>&lt;span class="nf">call_ext_only&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">{&lt;/span>&lt;span class="no">extfunc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="no">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="no">b&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="err">}}&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>call_ext_only&lt;/code>指令位于&lt;a href="erts/emulator/x86_64-pc-linux-gnu/opt/emu/beam_hot.h">beam_hot.h&lt;/a>文件，在编译时使用&lt;a href="erts/emulator/beam/emu/ops.tab">ops.tab&lt;/a>文件生成&lt;/p>
+&lt;p>接下来看下指令代码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">OpCase&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i_call_ext_last_eQ&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">E&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nf">ADD_BYTE_OFFSET&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">I&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]);;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">do&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">BeamInstr&lt;/span> &lt;span class="n">dis_next&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Export&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">ep&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ep&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">Export&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">I&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">DTRACE_GLOBAL_CALL_FROM_EXPORT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c_p&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ep&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">SET_I&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ep&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">dispatch&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">addresses&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nf">erts_active_code_ix&lt;/span>&lt;span class="p">()]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">CHECK_ARGS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">I&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dis_next&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">I&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">ERTS_UNLIKELY&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">FCALLS&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">ERTS_PROC_GET_SAVED_CALLS_BUF&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c_p&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">FCALLS&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">neg_o_reds&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">save_calls&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c_p&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ep&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">goto&lt;/span> &lt;span class="n">context_switch&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">FCALLS&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">Goto&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">dis_next&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="nf">ASSERT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="s">&amp;#34;Fell through &amp;#39;i_call_ext_last&amp;#39; (-no_next)&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>Export&lt;/code>导出结构和&lt;code>erts_active_code_ix&lt;/code>激活代码地址索引是我们想要了解的&lt;/p></description></item><item><title>Erlang实现函数内的循环</title><link>https://qcute.github.io/posts/erlang/erlang-loop/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/erlang-loop/</guid><description>&lt;p>&lt;a href="https://github.com/erlang/otp/">erlang&lt;/a>语义上绑定的变量是不可变的, 函数内也没有for/while/loop等循环&lt;br>
 但是, 函数式语言, 函数是第一等公民, 当然是可以通过&lt;a href="">命名&lt;/a>高阶函数实现循环&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-erl" data-lang="erl">&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span>&lt;span class="ni">module&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="p">).&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">main&lt;/span>&lt;span class="p">(_)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
@@ -515,8 +521,7 @@
 &lt;/table>
 &lt;h3 id="结论">结论&lt;/h3>
 &lt;p>在不发生异常的情况下&lt;/p></description></item><item><title>编译Erlang虚拟机</title><link>https://qcute.github.io/posts/erlang/compile-otp/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/compile-otp/</guid><description>&lt;blockquote>
-&lt;p>环境为RHEL/CentOS/RockyLinux 8&lt;/p>
-&lt;/blockquote>
+&lt;p>环境为RHEL/CentOS/RockyLinux 8&lt;/p>&lt;/blockquote>
 &lt;h3 id="1-安装编译依赖">1. 安装编译依赖&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 基础curses/ssl&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install gcc make ncurses-devel openssl-devel -y
