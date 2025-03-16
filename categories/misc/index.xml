@@ -65,7 +65,7 @@
 &lt;li>&lt;a href="http://www.openssh.com/">SSH&lt;/a>登录时显示&lt;/li>
 &lt;/ol>
 &lt;blockquote>
-&lt;p>Hi git! You&amp;rsquo;ve successfully authenticated, but I does not provide shell access.&lt;/p></description></item><item><title>redash安装报错问题修复</title><link>https://qcute.github.io/posts/misc/redash-install/</link><pubDate>Sat, 07 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/misc/redash-install/</guid><description>&lt;h2 id="执行官方安装脚本setuphttpsgithubcomgetredashsetup-出现以下报错">执行官方安装脚本&lt;a href="https://github.com/getredash/setup/">Setup&lt;/a>, 出现以下报错&lt;/h2>
+&lt;p>Hi git! You&amp;rsquo;ve successfully authenticated, but I does not provide shell access.&lt;/p></description></item><item><title>redash安装报错问题修复</title><link>https://qcute.github.io/posts/misc/redash-install/</link><pubDate>Sat, 07 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/misc/redash-install/</guid><description>&lt;h2 id="执行官方安装脚本setup-出现以下报错">执行官方安装脚本&lt;a href="https://github.com/getredash/setup/">Setup&lt;/a>, 出现以下报错&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">Traceback &lt;span class="o">(&lt;/span>most recent call last&lt;span class="o">)&lt;/span>:
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> File &lt;span class="s2">&amp;#34;/app/manage.py&amp;#34;&lt;/span>, line 9, in &amp;lt;module&amp;gt;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> manager&lt;span class="o">()&lt;/span>
@@ -139,7 +139,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">conn&lt;/span> &lt;span class="o">=&lt;/span> _connect&lt;span class="o">(&lt;/span>dsn, &lt;span class="nv">connection_factory&lt;/span>&lt;span class="o">=&lt;/span>connection_factory, **kwasync&lt;span class="o">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlalchemy.exc.OperationalError: &lt;span class="o">(&lt;/span>psycopg2.OperationalError&lt;span class="o">)&lt;/span> FATAL: password authentication failed &lt;span class="k">for&lt;/span> user &lt;span class="s2">&amp;#34;postgres&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">(&lt;/span>Background on this error at: http://sqlalche.me/e/e3q8&lt;span class="o">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="解决办法-修改postgreshttpswwwpostgresqlorg数据库密码">解决办法, 修改&lt;a href="https://www.postgresql.org/">Postgres&lt;/a>数据库密码&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="解决办法-修改postgres数据库密码">解决办法, 修改&lt;a href="https://www.postgresql.org/">Postgres&lt;/a>数据库密码&lt;/h2>
 &lt;p>进入&lt;a href="https://www.docker.com/">docker&lt;/a> shell&lt;/p></description></item><item><title>SVN使用SSH</title><link>https://qcute.github.io/posts/misc/svn-ssh/</link><pubDate>Sat, 07 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/misc/svn-ssh/</guid><description>&lt;p>&lt;a href="http://www.openssh.com/">SSH&lt;/a>配置方面和通常用&lt;a href="https://git-scm.com/">Git&lt;/a>一样，密码或者Key。&lt;br>
 当&lt;a href="https://subversion.apache.org/">SVN&lt;/a>使用&lt;a href="">SSH&lt;/a>时，&lt;a href="https://subversion.apache.org/">SVN&lt;/a>用户名用的就是&lt;a href="http://www.openssh.com/">SSH&lt;/a>登录的用户名，所以配置就很简单明了。&lt;/p>
 &lt;p>仓库认证配置 &lt;a href="">conf/authz&lt;/a>&lt;/p>

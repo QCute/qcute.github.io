@@ -109,7 +109,7 @@ EdXposed： &lt;a href="https://github.com/ElderDrivers/EdXposed/wiki/New-XShare
 &lt;li>&lt;del>&lt;a href="https://www.npmjs.com/package/frida">frida-node&lt;/a>&lt;/del>&lt;/li>
 &lt;li>&lt;a href="https://jshook.org">JsHook&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h3 id="由于豆瓣无法使用fridahttpsgithubcomfridafrida和frida-stronghttpsgithubcomhzzheyangstrongr-frida-android-故转换成jshookhttpsjshookorg">由于豆瓣无法使用&lt;a href="https://github.com/frida/frida">frida&lt;/a>和&lt;a href="https://github.com/hzzheyang/strongR-frida-android">frida-strong&lt;/a>, 故转换成&lt;a href="https://jshook.org">JsHook&lt;/a>&lt;/h3>
+&lt;h3 id="由于豆瓣无法使用frida和frida-strong-故转换成jshook">由于豆瓣无法使用&lt;a href="https://github.com/frida/frida">frida&lt;/a>和&lt;a href="https://github.com/hzzheyang/strongR-frida-android">frida-strong&lt;/a>, 故转换成&lt;a href="https://jshook.org">JsHook&lt;/a>&lt;/h3>
 &lt;h3 id="jadx全局搜索ctrlshiftf_sig-找到重点函数v6bintercept-核心smali代码如下">&lt;a href="">Jadx&lt;/a>全局搜索(&lt;a href="">Ctrl+Shift+F&lt;/a>)_sig, 找到重点函数&lt;a href="">v6.b.intercept&lt;/a>, 核心&lt;a href="">Smali&lt;/a>代码如下&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Smali" data-lang="Smali">&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="err">Pair&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">R&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">e&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="err">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">R&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">request&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="err">;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>if&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">R&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">!&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">null&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
@@ -163,7 +163,7 @@ EdXposed： &lt;a href="https://github.com/ElderDrivers/EdXposed/wiki/New-XShare
 &lt;li>&lt;a href="">str5&lt;/a>是&lt;a href="">HMAC_SHA1&lt;/a>的key, 我抓到的值是&lt;a href="">bf7dddc7c9cfe6f7&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h3 id="核心算法">核心算法&lt;/h3>
-&lt;h4 id="把上述的前四个参数用拼接起来-然后使用hmac_sha1算法进行签名-再进行base64编码">把上述的前四个参数用&lt;code>&amp;amp;&lt;/code>拼接起来, 然后使用&lt;a href="">HMAC_SHA1&lt;/a>算法进行签名, 再进行&lt;a href="">Base64&lt;/a>编码&lt;/h4>
+&lt;h4 id="把上述的前四个参数用拼接起来-然后使用hmac_算法进行签名-再进行base64编码">把上述的前四个参数用&lt;code>&amp;amp;&lt;/code>拼接起来, 然后使用&lt;a href="">HMAC_SHA1&lt;/a>算法进行签名, 再进行&lt;a href="">Base64&lt;/a>编码&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="ch">#!/bin/env python&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">urllib&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">parse&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
