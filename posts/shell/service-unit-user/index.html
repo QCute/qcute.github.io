@@ -1,5 +1,4 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>Service Unit User问题 ｜ 轻作</title>
-<meta name=description content="今天发现php的getenv函数返回false
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>Service Unit User问题 ｜ 轻作</title><meta name=description content="今天发现php的getenv函数返回false
 getenv('HOME') 由于是系统是运行在system daemon下的, 查看了service unit, 里面并无指定具体的user
 所以, 在Service里面添加User
 [Service] # specific user User=root 函数就可以正确获取到数据了

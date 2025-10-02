@@ -1,5 +1,4 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>记一次bash的while循环中使用escript的问题 ｜ 轻作</title>
-<meta name=description content="问题 在一次写脚本时，偶然发现了当Escript在Bash的while中使用时，循环里明明有很多次，但是Escript却只执行了一次的问题。
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>记一次bash的while循环中使用escript的问题 ｜ 轻作</title><meta name=description content="问题 在一次写脚本时，偶然发现了当Escript在Bash的while中使用时，循环里明明有很多次，但是Escript却只执行了一次的问题。
 Escript执行脚本test.erl时，启动命令如下
 test.erl -B -- -root /usr/lib/erlang -progname erl -- -home /home/m -- -boot no_dot_erlang -noshell -run escript start -extra test.erl 命令里有-noshell标识，此时erlang不会启动shell
 原因就是在Escript模式下，Erlang不会启动shell，但是仍然会从stdin中读取输入，而while读取下一次内容时就会向stdin输入内容，而内容则被Erlang读取了，循环也就“结束”了。

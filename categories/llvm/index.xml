@@ -1,76 +1,76 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Llvm on 轻作</title><link>https://qcute.github.io/categories/llvm/</link><description>Recent content in Llvm on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>759276607@qq.com (QCute)</managingEditor><webMaster>759276607@qq.com (QCute)</webMaster><lastBuildDate>Fri, 06 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/llvm/index.xml" rel="self" type="application/rss+xml"/><item><title>Clang/LLVM编译流程</title><link>https://qcute.github.io/posts/llvm/clang-llvm-flow/</link><pubDate>Fri, 06 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/llvm/clang-llvm-flow/</guid><description>&lt;h1 id="1-c源文件---i预处理文件">1 &lt;a href="">.c&lt;/a>(源文件) -&amp;gt; &lt;a href="">.i&lt;/a>(预处理文件)&lt;/h1>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">clang -E -c test.c -o test.i
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="11-c源文件---bcllvm-ir文件二进制形式">1.1 &lt;a href="">.c&lt;/a>(源文件) -&amp;gt; &lt;a href="">.bc&lt;/a>(LLVM IR文件(二进制形式))&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">clang -emit-llvm test.c -c -o test.bc
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="12-c源文件---llllvm-ir文件文本形式">1.2 &lt;a href="">.c&lt;/a>(源文件) -&amp;gt; &lt;a href="">.ll&lt;/a>(LLVM IR文件(文本形式))&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">clang -emit-llvm test.c -S -o test.ll
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="2-i预处理文件---bcllvm-ir文件二进制形式">2 &lt;a href="">.i&lt;/a>(预处理文件) -&amp;gt; &lt;a href="">.bc&lt;/a>(LLVM IR文件(二进制形式))&lt;/h1>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">clang -emit-llvm test.i -c -o test.bc
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="21-i预处理文件---llllvm-ir文件文本形式">2.1 &lt;a href="">.i&lt;/a>(预处理文件) -&amp;gt; &lt;a href="">.ll&lt;/a>(LLVM IR文件(文本形式))&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">clang -emit-llvm test.i -S -o test.ll
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="22-bcllvm-ir文件二进制形式---llllvm-ir文件文本形式">2.2 &lt;a href="">.bc&lt;/a>(LLVM IR文件(二进制形式)) -&amp;gt; &lt;a href="">.ll&lt;/a>(LLVM IR文件(文本形式))&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">llvm-dis test.bc -o test.ll
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="23-llllvm-ir文件文本形式---bcllvm-ir文件二进制形式">2.3 &lt;a href="">.ll&lt;/a>(LLVM IR文件(文本形式)) -&amp;gt; &lt;a href="">.bc&lt;/a>(LLVM IR文件(二进制形式))&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">llvm-as test.ll -o test.bc
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="24-把多个-bc-合并为一个-bc">2.4 把多个 &lt;a href="">.bc&lt;/a> 合并为一个 &lt;a href="">.bc&lt;/a>&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">llvm-link test1.bc test2.bc -o test.bc
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="3-bcllvm-ir文件二进制形式---s汇编文件">3 &lt;a href="">.bc&lt;/a>(LLVM IR文件(二进制形式)) -&amp;gt; &lt;a href="">.s&lt;/a>(汇编文件)&lt;/h1>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">llc --march&lt;span class="o">=&lt;/span>x86-64 test.bc
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="4-s汇编文件---o可重定位的对象文件">4 &lt;a href="">.s&lt;/a>(汇编文件) -&amp;gt; &lt;a href="">.o&lt;/a>(可重定位的对象文件)&lt;/h1>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">clang -c test.s -o test.o
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="5-o可重定位的对象文件---elf可执行文件">5 &lt;a href="">.o&lt;/a>(可重定位的对象文件) -&amp;gt; &lt;a href="">elf&lt;/a>(可执行文件)&lt;/h1>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">ld.lld -e main -o &lt;span class="nb">test&lt;/span> test.o
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="51-不链接c库需要手动退出在main函数返回前进行系统调用">5.1 不链接C库需要手动退出，在&lt;a href="">main&lt;/a>函数返回前进行系统调用&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// x86-linux
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">asm&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;movq $0, %rdi &lt;/span>&lt;span class="se">\n\t&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;movq $1, %rax &lt;/span>&lt;span class="se">\n\t&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;syscall &lt;/span>&lt;span class="se">\n\t&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// x64-linux
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">asm&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;movq $0, %rdi &lt;/span>&lt;span class="se">\n\t&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;movq $60, %rax &lt;/span>&lt;span class="se">\n\t&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;syscall &lt;/span>&lt;span class="se">\n\t&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;h3 id="52-如果使用了c-api则需要链接c库">5.2 如果使用了C API则需要链接C库&lt;/h3>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># Debian/Ubuntu
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ld.lld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test test.o /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /lib/x86_64-linux-gnu/crtn.o /lib/x86_64-linux-gnu/libc.so
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># RedHat/CentOS/RockyLinux
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ld.lld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test test.o /lib64/crt1.o /lib64/crti.o /lib64/crtn.o /lib64/libc.so
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="ll文件语法参考">&lt;a href="">ll&lt;/a>文件语法参考&lt;/h1>
-&lt;blockquote>
-&lt;p>&lt;a href="https://llvm.org/docs/LangRef.html#module-structure">LangRef&lt;/a>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Llvm on 轻作</title><link>https://qcute.github.io/categories/llvm/</link><description>Recent content in Llvm on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>759276607@qq.com (QCute)</managingEditor><webMaster>759276607@qq.com (QCute)</webMaster><lastBuildDate>Fri, 06 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/llvm/index.xml" rel="self" type="application/rss+xml"/><item><title>Clang/LLVM编译流程</title><link>https://qcute.github.io/posts/llvm/clang-llvm-flow/</link><pubDate>Fri, 06 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/llvm/clang-llvm-flow/</guid><description>&lt;h1 id="1-c源文件---i预处理文件"&gt;1 &lt;a href=""&gt;.c&lt;/a&gt;(源文件) -&amp;gt; &lt;a href=""&gt;.i&lt;/a&gt;(预处理文件)&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;clang -E -c test.c -o test.i
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="11-c源文件---bcllvm-ir文件二进制形式"&gt;1.1 &lt;a href=""&gt;.c&lt;/a&gt;(源文件) -&amp;gt; &lt;a href=""&gt;.bc&lt;/a&gt;(LLVM IR文件(二进制形式))&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;clang -emit-llvm test.c -c -o test.bc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="12-c源文件---llllvm-ir文件文本形式"&gt;1.2 &lt;a href=""&gt;.c&lt;/a&gt;(源文件) -&amp;gt; &lt;a href=""&gt;.ll&lt;/a&gt;(LLVM IR文件(文本形式))&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;clang -emit-llvm test.c -S -o test.ll
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="2-i预处理文件---bcllvm-ir文件二进制形式"&gt;2 &lt;a href=""&gt;.i&lt;/a&gt;(预处理文件) -&amp;gt; &lt;a href=""&gt;.bc&lt;/a&gt;(LLVM IR文件(二进制形式))&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;clang -emit-llvm test.i -c -o test.bc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="21-i预处理文件---llllvm-ir文件文本形式"&gt;2.1 &lt;a href=""&gt;.i&lt;/a&gt;(预处理文件) -&amp;gt; &lt;a href=""&gt;.ll&lt;/a&gt;(LLVM IR文件(文本形式))&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;clang -emit-llvm test.i -S -o test.ll
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="22-bcllvm-ir文件二进制形式---llllvm-ir文件文本形式"&gt;2.2 &lt;a href=""&gt;.bc&lt;/a&gt;(LLVM IR文件(二进制形式)) -&amp;gt; &lt;a href=""&gt;.ll&lt;/a&gt;(LLVM IR文件(文本形式))&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;llvm-dis test.bc -o test.ll
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="23-llllvm-ir文件文本形式---bcllvm-ir文件二进制形式"&gt;2.3 &lt;a href=""&gt;.ll&lt;/a&gt;(LLVM IR文件(文本形式)) -&amp;gt; &lt;a href=""&gt;.bc&lt;/a&gt;(LLVM IR文件(二进制形式))&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;llvm-as test.ll -o test.bc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="24-把多个-bc-合并为一个-bc"&gt;2.4 把多个 &lt;a href=""&gt;.bc&lt;/a&gt; 合并为一个 &lt;a href=""&gt;.bc&lt;/a&gt;&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;llvm-link test1.bc test2.bc -o test.bc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="3-bcllvm-ir文件二进制形式---s汇编文件"&gt;3 &lt;a href=""&gt;.bc&lt;/a&gt;(LLVM IR文件(二进制形式)) -&amp;gt; &lt;a href=""&gt;.s&lt;/a&gt;(汇编文件)&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;llc --march&lt;span class="o"&gt;=&lt;/span&gt;x86-64 test.bc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="4-s汇编文件---o可重定位的对象文件"&gt;4 &lt;a href=""&gt;.s&lt;/a&gt;(汇编文件) -&amp;gt; &lt;a href=""&gt;.o&lt;/a&gt;(可重定位的对象文件)&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;clang -c test.s -o test.o
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="5-o可重定位的对象文件---elf可执行文件"&gt;5 &lt;a href=""&gt;.o&lt;/a&gt;(可重定位的对象文件) -&amp;gt; &lt;a href=""&gt;elf&lt;/a&gt;(可执行文件)&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ld.lld -e main -o &lt;span class="nb"&gt;test&lt;/span&gt; test.o
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="51-不链接c库需要手动退出在main函数返回前进行系统调用"&gt;5.1 不链接C库需要手动退出，在&lt;a href=""&gt;main&lt;/a&gt;函数返回前进行系统调用&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// x86-linux
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="k"&gt;asm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s"&gt;&amp;#34;movq $0, %rdi &lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s"&gt;&amp;#34;movq $1, %rax &lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s"&gt;&amp;#34;syscall &lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// x64-linux
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="k"&gt;asm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s"&gt;&amp;#34;movq $0, %rdi &lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s"&gt;&amp;#34;movq $60, %rax &lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s"&gt;&amp;#34;syscall &lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id="52-如果使用了c-api则需要链接c库"&gt;5.2 如果使用了C API则需要链接C库&lt;/h3&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# Debian/Ubuntu
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ld.lld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test test.o /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /lib/x86_64-linux-gnu/crtn.o /lib/x86_64-linux-gnu/libc.so
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# RedHat/CentOS/RockyLinux
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ld.lld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o test test.o /lib64/crt1.o /lib64/crti.o /lib64/crtn.o /lib64/libc.so
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="ll文件语法参考"&gt;&lt;a href=""&gt;ll&lt;/a&gt;文件语法参考&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://llvm.org/docs/LangRef.html#module-structure"&gt;LangRef&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

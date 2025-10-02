@@ -1,5 +1,4 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>使用VSCode调试Erlang虚拟机 ｜ 轻作</title>
-<meta name=description content='
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>使用VSCode调试Erlang虚拟机 ｜ 轻作</title><meta name=description content='
 1. 下载OTP源码 git clone git@github.com:erlang/otp.git && cd otp 2. 配置 ./configure --enable-kernel-poll --enable-fips --enable-m64-build --with-dynamic-trace=systemtap 3. 以调试模式编译 make -j "$(grep -c "processor" /proc/cpuinfo)" TYPE=debug FLAVOR=smp 4. 安装VSCode插件 安装C/C++插件
 安装Makefile插件
 安装Remote - SSH插件(远程需要)

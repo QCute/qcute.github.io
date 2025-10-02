@@ -1,5 +1,4 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>UniApp(uViewUI)弹出层滚动穿透问题 ｜ 轻作</title>
-<meta name=description content=' 动态修改页面属性 在网上搜了下，说要设置page-meta样式
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="QCute"><title>UniApp(uViewUI)弹出层滚动穿透问题 ｜ 轻作</title><meta name=description content=' 动态修改页面属性 在网上搜了下，说要设置page-meta样式
 <page-meta :page-style="{&#39;overflow&#39;: scroll ? &#39;visible&#39; : &#39;hidden&#39; }"> 如果每个有弹窗的页面都要额外再设置一个page-meta的话，这就很不方便了
 我们看下uViewUI弹窗例子 <template> <view> <u-popup :show="show" @close="close" @open="open" @touchmove.stop=""> <scroll-view scroll-y style="height: 123rpx"> <text>出淤泥而不染，濯清涟而不妖</text> <text>出淤泥而不染，濯清涟而不妖</text> <text>出淤泥而不染，濯清涟而不妖</text> <text>出淤泥而不染，濯清涟而不妖</text> <text>出淤泥而不染，濯清涟而不妖</text> <text>出淤泥而不染，濯清涟而不妖</text> </scroll-view> </u-popup> </view> </template> 只需要在u-popup加上
 @touchmove.stop="" 就能阻止滚动事件向上传递

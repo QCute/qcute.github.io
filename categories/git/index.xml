@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on 轻作</title><link>https://qcute.github.io/categories/git/</link><description>Recent content in Git on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>759276607@qq.com (QCute)</managingEditor><webMaster>759276607@qq.com (QCute)</webMaster><lastBuildDate>Thu, 05 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git工作流</title><link>https://qcute.github.io/posts/git/git-work-flow/</link><pubDate>Thu, 05 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/git/git-work-flow/</guid><description>&lt;h3 id="本地开发流程">本地开发流程&lt;/h3>
-&lt;ol>
-&lt;li>克隆仓库(git clone git@xxx:xxx.git)&lt;/li>
-&lt;li>创建并切换到xxx_dev分支(git checkout -b xxx_dev或者git switch -c xxx_dev)&lt;/li>
-&lt;li>开发&lt;/li>
-&lt;li>开发完成(git add/stage xxx)&lt;/li>
-&lt;li>提交(git commit -m &amp;ldquo;xxx&amp;rdquo;)&lt;/li>
-&lt;li>切换到master分支(git checkout master或者git switch master)&lt;/li>
-&lt;li>合并xxx_dev分支代码(git merge xxx_dev)&lt;/li>
-&lt;li>&lt;span id="8">&lt;/span>推送更新(git push origin master)&lt;/li>
-&lt;li>如果远端有更新, fast-forwards&lt;/li>
-&lt;li>以rebase方式拉取和合并代码(git pull &amp;ndash;rebase origin master)&lt;/li>
-&lt;li>若有冲突, 解决冲突, 然后再次&lt;a href="#8">推送更新&lt;/a>&lt;/li>
-&lt;/ol>
-&lt;h3 id="测试仓库流程">测试仓库流程&lt;/h3>
-&lt;ol>
-&lt;li>克隆仓库(git clone git@xxx:xxx.git)&lt;/li>
-&lt;li>创建并切换到dev分支(git checkout -b dev或者git switch -c dev)&lt;/li>
-&lt;li>配置生成 &amp;hellip;&lt;/li>
-&lt;li>储藏本地变更(git stash)&lt;/li>
-&lt;li>以rebase方式拉取和合并代码(git pull &amp;ndash;rebase origin master)&lt;/li>
-&lt;li>&lt;span id="6">弹出储藏(git stash pop)&lt;/li>
-&lt;li>若有冲突, 使用策划的生成的配置数据(本地)覆盖(远端)提交的数据(git checkout &amp;ndash;theirs .)&lt;/li>
-&lt;li>暂存(git add/stage .)已解决的冲突, 再次&lt;a href="#6">弹出储藏&lt;/a>完成更新&lt;/li>
-&lt;li>构建&lt;/li>
-&lt;/ol></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on 轻作</title><link>https://qcute.github.io/categories/git/</link><description>Recent content in Git on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>759276607@qq.com (QCute)</managingEditor><webMaster>759276607@qq.com (QCute)</webMaster><lastBuildDate>Thu, 05 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git工作流</title><link>https://qcute.github.io/posts/git/git-work-flow/</link><pubDate>Thu, 05 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/git/git-work-flow/</guid><description>&lt;h3 id="本地开发流程"&gt;本地开发流程&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;克隆仓库(git clone git@xxx:xxx.git)&lt;/li&gt;
+&lt;li&gt;创建并切换到xxx_dev分支(git checkout -b xxx_dev或者git switch -c xxx_dev)&lt;/li&gt;
+&lt;li&gt;开发&lt;/li&gt;
+&lt;li&gt;开发完成(git add/stage xxx)&lt;/li&gt;
+&lt;li&gt;提交(git commit -m &amp;ldquo;xxx&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;切换到master分支(git checkout master或者git switch master)&lt;/li&gt;
+&lt;li&gt;合并xxx_dev分支代码(git merge xxx_dev)&lt;/li&gt;
+&lt;li&gt;&lt;span id="8"&gt;&lt;/span&gt;推送更新(git push origin master)&lt;/li&gt;
+&lt;li&gt;如果远端有更新, fast-forwards&lt;/li&gt;
+&lt;li&gt;以rebase方式拉取和合并代码(git pull &amp;ndash;rebase origin master)&lt;/li&gt;
+&lt;li&gt;若有冲突, 解决冲突, 然后再次&lt;a href="#8"&gt;推送更新&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="测试仓库流程"&gt;测试仓库流程&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;克隆仓库(git clone git@xxx:xxx.git)&lt;/li&gt;
+&lt;li&gt;创建并切换到dev分支(git checkout -b dev或者git switch -c dev)&lt;/li&gt;
+&lt;li&gt;配置生成 &amp;hellip;&lt;/li&gt;
+&lt;li&gt;储藏本地变更(git stash)&lt;/li&gt;
+&lt;li&gt;以rebase方式拉取和合并代码(git pull &amp;ndash;rebase origin master)&lt;/li&gt;
+&lt;li&gt;&lt;span id="6"&gt;弹出储藏(git stash pop)&lt;/li&gt;
+&lt;li&gt;若有冲突, 使用策划的生成的配置数据(本地)覆盖(远端)提交的数据(git checkout &amp;ndash;theirs .)&lt;/li&gt;
+&lt;li&gt;暂存(git add/stage .)已解决的冲突, 再次&lt;a href="#6"&gt;弹出储藏&lt;/a&gt;完成更新&lt;/li&gt;
+&lt;li&gt;构建&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>
