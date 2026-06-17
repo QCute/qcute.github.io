@@ -14,13 +14,13 @@
 </span></span></code></pre></div><h1 id=4-s汇编文件---o可重定位的对象文件>4 <a href>.s</a>(汇编文件) -> <a href>.o</a>(可重定位的对象文件)</h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>clang -c test.s -o test.o
 </span></span></code></pre></div><h1 id=5-o可重定位的对象文件---elf可执行文件>5 <a href>.o</a>(可重定位的对象文件) -> <a href>elf</a>(可执行文件)</h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>ld.lld -e main -o <span class=nb>test</span> test.o
 </span></span></code></pre></div><ul><li><h3 id=51-不链接c库需要手动退出在main函数返回前进行系统调用>5.1 不链接C库需要手动退出，在<a href>main</a>函数返回前进行系统调用</h3></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=c1>// x86-linux
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>asm</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl><span class=k>asm</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=s>&#34;movq $0, %rdi </span><span class=se>\n\t</span><span class=s>&#34;</span>
 </span></span><span class=line><span class=cl>    <span class=s>&#34;movq $1, %rax </span><span class=se>\n\t</span><span class=s>&#34;</span>
 </span></span><span class=line><span class=cl>    <span class=s>&#34;syscall </span><span class=se>\n\t</span><span class=s>&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>);</span>
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=c1>// x64-linux
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>asm</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl><span class=k>asm</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=s>&#34;movq $0, %rdi </span><span class=se>\n\t</span><span class=s>&#34;</span>
 </span></span><span class=line><span class=cl>    <span class=s>&#34;movq $60, %rax </span><span class=se>\n\t</span><span class=s>&#34;</span>
 </span></span><span class=line><span class=cl>    <span class=s>&#34;syscall </span><span class=se>\n\t</span><span class=s>&#34;</span>

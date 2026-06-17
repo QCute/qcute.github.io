@@ -6,12 +6,14 @@
 &lt;li&gt;No activity found to handle intent&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;android.intent.action.OPEN_DOCUMENT&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;android.intent.action.OPEN_DOCUMENT&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;No activity found to handle intent&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;android.intent.action.OPEN_DOCUMENT_TREE&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;android.intent.action.OPEN_DOCUMENT_TREE&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;奇怪了个怪, 按道理像文件管理器等应该会响应这个或者这类Intent吧&lt;/p&gt;
 &lt;p&gt;然后查看&lt;a href="https://developer.android.com/guide/components/intents-filters"&gt;Intent Filters&lt;/a&gt;, 看下有哪些Activity响应这个Intent&lt;/p&gt;</description></item><item><title>Xposed XSharedPreferences在安卓N以后及解决方案</title><link>https://qcute.github.io/posts/android/xposed-shared-preferences/</link><pubDate>Tue, 03 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/android/xposed-shared-preferences/</guid><description>&lt;p&gt;由于在&lt;a href="https://www.android.com"&gt;Android&lt;/a&gt; 7 (SDK 24) 及以后 &lt;a href="https://developer.android.com/reference/android/content/Context#MODE_WORLD_READABLE"&gt;Context.MODE_WORLD_READABLE&lt;/a&gt; 被废弃&lt;br&gt;
 导致&lt;a href="https://repo.xposed.info/"&gt;Xposed&lt;/a&gt; &lt;a href="https://api.xposed.info/reference/de/robv/android/xposed/XSharedPreferences.html"&gt;XSharedPreference&lt;/a&gt;不可用&lt;/p&gt;
@@ -185,7 +187,7 @@ EdXposed： &lt;a href="https://github.com/ElderDrivers/EdXposed/wiki/New-XShare
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-typescript" data-lang="typescript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;XposedBridge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hookAllMethods&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;XposedHelpers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;findClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;e0.a&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;runtime&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;classLoader&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;XC_MethodReplacement&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;replaceHookedMethod&lt;/span&gt;: &lt;span class="kt"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;param&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// XposedHelpers.getStaticObjectField(XposedHelpers.findClass(&amp;#39;com.test.test&amp;#39;,runtime.classLoader),&amp;#39;name&amp;#39;);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;v6.e.d().e.b:《&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;v6.e.d().e.b:《&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;XposedHelpers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getObjectField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;XposedHelpers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getObjectField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;XposedHelpers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;callStaticMethod&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;

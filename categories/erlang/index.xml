@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Erlang on 轻作</title><link>https://qcute.github.io/categories/erlang/</link><description>Recent content in Erlang on 轻作</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>759276607@qq.com (QCute)</managingEditor><webMaster>759276607@qq.com (QCute)</webMaster><lastBuildDate>Wed, 04 Mar 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://qcute.github.io/categories/erlang/index.xml" rel="self" type="application/rss+xml"/><item><title>Erlang ETS内部数据结构</title><link>https://qcute.github.io/posts/erlang/beam-ets/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/beam-ets/</guid><description>&lt;h3 id="1-setbagduplicate_bag使用的是哈希表"&gt;1. set/bag/duplicate_bag使用的是哈希表&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L352-L353"&gt;IS_HASH_TABLE&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L352-L353"&gt;IS_HASH_TABLE&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id="2-ordered_set使用的是avl树"&gt;2. ordered_set使用的是AVL树&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L354-L355"&gt;IS_TREE_TABLE&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L354-L355"&gt;IS_TREE_TABLE&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;为了提升并发写性能, 在OTP22之后引入了CAS(contention adapting search)树&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L356-L357"&gt;IS_CATREE_TABLE&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_util.h#L356-L357"&gt;IS_CATREE_TABLE&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;参考&lt;a href="https://erlang.org/"&gt;Erlang&lt;/a&gt;&lt;a href="https://www.erlang.org/blog/"&gt;博客&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://www.erlang.org/blog/the-new-scalable-ets-ordered_set/"&gt;The New Scalable ETS ordered_set&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description></item><item><title>Erlang持久对象(Persistent Term)</title><link>https://qcute.github.io/posts/erlang/persistent-term/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/persistent-term/</guid><description>&lt;p&gt;持久对象(Persistent Term)是&lt;a href="https://github.com/erlang.otp"&gt;OTP-21.3&lt;/a&gt;之后引入的, 它的&lt;a href=""&gt;get&lt;/a&gt;是非复制(Copy)的&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.erlang.org/blog/the-new-scalable-ets-ordered_set/"&gt;The New Scalable ETS ordered_set&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>Erlang持久对象(Persistent Term)</title><link>https://qcute.github.io/posts/erlang/persistent-term/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/persistent-term/</guid><description>&lt;p&gt;持久对象(Persistent Term)是&lt;a href="https://github.com/erlang.otp"&gt;OTP-21.3&lt;/a&gt;之后引入的, 它的&lt;a href=""&gt;get&lt;/a&gt;是非复制(Copy)的&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L477-L491"&gt;persistent_term_get_1&lt;/a&gt;
 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L962-L980"&gt;lookup&lt;/a&gt;
-&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L66-L69"&gt;get_bucket&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_bif_persistent.c#L66-L69"&gt;get_bucket&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;而&lt;a href=""&gt;ETS&lt;/a&gt;的&lt;a href=""&gt;get&lt;/a&gt;是复制(Copy)的&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db.c#L2496-L2519"&gt;ets_lookup_2&lt;/a&gt;
 &lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_hash.c#L1207-L1207"&gt;db_get_hash&lt;/a&gt;
-&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_hash.c#L1185-L1185"&gt;build_term_list&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_db_hash.c#L1185-L1185"&gt;build_term_list&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在游戏服务器里面, 配置表通常会用&lt;a href=""&gt;ETS&lt;/a&gt;或者&lt;a href=""&gt;beam&lt;/a&gt;进行热更新, &lt;a href=""&gt;ETS&lt;/a&gt;每一次&lt;a href=""&gt;get&lt;/a&gt;都会复制, &lt;a href=""&gt;beam&lt;/a&gt;每一次调用, 也是要重新构造一份数据的。如果你使用&lt;a href="https://github.com/erlang.otp"&gt;OTP-21.3&lt;/a&gt;之后的版本, 可以结合持久对象(Persistent Term)做成&lt;a href=""&gt;OOP&lt;/a&gt;那样的单例模式, 进一步提升计算性能和降低内存消耗。&lt;/p&gt;</description></item><item><title>Erlang更新Record的优化</title><link>https://qcute.github.io/posts/erlang/beam-set-tuple-element/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/beam-set-tuple-element/</guid><description>&lt;p&gt;Record的更新使用的是&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/preloaded/src/erlang.erl#L2589"&gt;erlang:setelement/3&lt;/a&gt;, 在更新多个字段的时候很浪费性能以及内存&lt;br&gt;
 后来引入了一个破坏性的优化指令: set_tuple_element&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-erl" data-lang="erl"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="ni"&gt;record&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nl"&gt;record&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;}).&lt;/span&gt;
@@ -77,25 +83,25 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;L&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;lists&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;seq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;O&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;Begin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;timestamp&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% first
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="nv"&gt;F&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;fun&lt;/span&gt; &lt;span class="n"&gt;jp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;F&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;fun&lt;/span&gt; &lt;span class="n"&gt;jp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;F&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;||&lt;/span&gt; &lt;span class="p"&gt;_&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nv"&gt;L&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% [?MODULE:jp() || _ &amp;lt;- L],
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="c"&gt;%% middle
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="nv"&gt;Middle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;timestamp&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% middle
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;Middle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;timestamp&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% middle
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;fun&lt;/span&gt; &lt;span class="n"&gt;jp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;||&lt;/span&gt; &lt;span class="p"&gt;_&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nv"&gt;L&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;fun&lt;/span&gt; &lt;span class="n"&gt;jp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;||&lt;/span&gt; &lt;span class="p"&gt;_&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nv"&gt;L&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% [apply(?MODULE, jp, []) || _ &amp;lt;- L],
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="c"&gt;%% [?MODULE:jp() || _ &amp;lt;- L],
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="c"&gt;%% second
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="nv"&gt;End&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;timestamp&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% [?MODULE:jp() || _ &amp;lt;- L],
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% second
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;End&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;timestamp&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c"&gt;%% diff
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt; &lt;span class="nv"&gt;First&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;timer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;now_diff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Middle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;Begin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;div&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;First&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;timer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;now_diff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Middle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;Begin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;div&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;Second&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nn"&gt;timer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;now_diff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;End&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;Middle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;div&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nn"&gt;io&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;First:&lt;/span&gt;&lt;span class="si"&gt;~p&lt;/span&gt;&lt;span class="s"&gt; Second:&lt;/span&gt;&lt;span class="si"&gt;~p~n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;First&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;Second&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;ok&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;%% にほんご
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;&lt;/span&gt;&lt;span class="nf"&gt;jp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;jp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s"&gt;&amp;#34;にほんご&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;jps&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;にほんご&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
@@ -158,19 +164,24 @@
 &lt;p&gt;可见, 前几种调用方式差距不算很大, 只是最后apply lambda函数的情况下差距较大。在&lt;a href=""&gt;OTP-24 with (JIT)&lt;/a&gt;之后, 想要抽象也不需要付出很大的性能代价, 放心尽情地使用吧。&lt;/p&gt;</description></item><item><title>Erlang进程表</title><link>https://qcute.github.io/posts/erlang/beam-process-table/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/beam-process-table/</guid><description>&lt;p&gt;以前以为进程表是用B树之类的存储, 后来才发现是用索引表&lt;/p&gt;
 &lt;p&gt;参考&lt;a href="https://erlang.org/"&gt;Erlang&lt;/a&gt;&lt;a href="https://www.erlang.org/doc/apps/erts/internal_docs.html"&gt;内部文档&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://www.erlang.org/doc/apps/erts/ptables"&gt;进程和端口表&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.erlang.org/doc/apps/erts/ptables"&gt;进程和端口表&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;代码&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_ptab.h#L122-L147"&gt;ErtsPTab&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_ptab.h#L122-L147"&gt;ErtsPTab&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;学习了&lt;/p&gt;</description></item><item><title>Erlang进程字典</title><link>https://qcute.github.io/posts/erlang/process-dict/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/process-dict/</guid><description>&lt;p&gt;&lt;a href=""&gt;进程字典&lt;/a&gt;使用的是hash分片方式存放&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.h#L31-L31"&gt;ProcDict&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.h#L31-L31"&gt;ProcDict&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=""&gt;进程字典&lt;/a&gt;的&lt;a href=""&gt;get&lt;/a&gt;是非复制(Copy)的&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L472-L496"&gt;pd_hash_get_with_hval&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L472-L496"&gt;pd_hash_get_with_hval&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=""&gt;进程字典&lt;/a&gt;的&lt;a href=""&gt;put&lt;/a&gt;也是非复制(Copy)的&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L717-L741"&gt;pd_hash_put&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/erlang/otp/blob/maint-24/erts/emulator/beam/erl_process_dict.c#L717-L741"&gt;pd_hash_put&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;存放单个时使用&lt;a href=""&gt;tuple&lt;/a&gt;, 多个(哈希冲突), 使用&lt;a href=""&gt;list&lt;/a&gt;, 然后线性查找。&lt;/p&gt;</description></item><item><title>Erlang热更新的实现</title><link>https://qcute.github.io/posts/erlang/code-hot-reload/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/code-hot-reload/</guid><description>&lt;h2 id="从一个基本调用开始"&gt;从一个基本调用开始&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-asm" data-lang="asm"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="nf"&gt;function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;call&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="nf"&gt;label&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
@@ -228,7 +239,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; (Proc)-&amp;gt;arity = (Arity); \
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; (Proc)-&amp;gt;freason = TRAP; \
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; } while(0);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define BIF_TRAP1(Trap_, p, A0) \
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; do { \
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; Eterm* reg = erts_proc_sched_data((p))-&amp;gt;registers-&amp;gt;x_reg_array.d; \
@@ -301,7 +312,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;ERTS_CHK_MBUF_SZ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c_p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;bf&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;c_p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 调用
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/* Only heavy BIFs may GC. */&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;ASSERT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;c_p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
@@ -336,7 +347,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;SET_I&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;BeamInstr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;Goto&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="p"&gt;);;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c_p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;freason&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;TRAP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 失败原因是trap的情况
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="cm"&gt;/*
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/*
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; * Set the continuation pointer to return to next
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; * instruction after the trap (either by a return from
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; * erlang code or by nif_bif.epilogue() when the BIF
@@ -352,10 +363,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;CHECK_ARGS&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FCALLS&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;FCALLS&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;neg_o_reds&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 还有REDS, 继续
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;FCALLS&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;FCALLS&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;Goto&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dis_next&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 没有则切换上下文
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;context_switch&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="n"&gt;context_switch&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
@@ -521,7 +532,8 @@
 &lt;/table&gt;
 &lt;h3 id="结论"&gt;结论&lt;/h3&gt;
 &lt;p&gt;在不发生异常的情况下&lt;/p&gt;</description></item><item><title>编译Erlang虚拟机</title><link>https://qcute.github.io/posts/erlang/compile-otp/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><author>759276607@qq.com (QCute)</author><guid>https://qcute.github.io/posts/erlang/compile-otp/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;环境为RHEL/CentOS/RockyLinux 8&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;环境为RHEL/CentOS/RockyLinux 8&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id="1-安装编译依赖"&gt;1. 安装编译依赖&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 基础curses/ssl&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;dnf install gcc make ncurses-devel openssl-devel -y

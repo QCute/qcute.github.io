@@ -8,7 +8,8 @@
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;virt-resize --expand /dev/sda1 old.qcow2 new.qcow2
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;virt-resize 在 guestfs-tools 或者 libguestfs-tools 上&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;virt-resize 在 guestfs-tools 或者 libguestfs-tools 上&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h1 id="二直接扩大磁盘的大小"&gt;二、直接扩大磁盘的大小&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;qemu-img resize old.qcow2 +10G
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="三完成后使用-qemu-img-和-virt-df-查看镜像信息"&gt;三、完成后使用 qemu-img 和 virt-df 查看镜像信息&lt;/h1&gt;
@@ -283,7 +284,7 @@
 &lt;li&gt;&lt;a href=""&gt;sshpass&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/usr/bin/env bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="c1"&gt;# sshpass - use command line password with ssh&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# sshpass - use command line password with ssh&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# inspire by https://github.com/huan/sshpass.sh&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# ref to https://www.exratione.com/2014/08/bash-script-ssh-automation-without-a-password-prompt/&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# the origin sshpass pass passphrase by pipe, but Symfony Process pipe need --enable-sigchild&lt;/span&gt;

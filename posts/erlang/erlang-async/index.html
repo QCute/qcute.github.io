@@ -11,7 +11,7 @@ OpCase(call_light_bif_be): { Export *export; ErtsBifFunc bf; Eterm result; ErlHe
 </span></span></span><span class=line><span class=cl><span class=cp>        (Proc)-&gt;arity = (Arity);                                              \
 </span></span></span><span class=line><span class=cl><span class=cp>        (Proc)-&gt;freason = TRAP;                                               \
 </span></span></span><span class=line><span class=cl><span class=cp>    } while(0);
-</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=cp>#define BIF_TRAP1(Trap_, p, A0)                                               \
 </span></span></span><span class=line><span class=cl><span class=cp>    do {                                                                      \
 </span></span></span><span class=line><span class=cl><span class=cp>        Eterm* reg = erts_proc_sched_data((p))-&gt;registers-&gt;x_reg_array.d;     \
@@ -82,7 +82,7 @@ OpCase(call_light_bif_be): { Export *export; ErtsBifFunc bf; Eterm result; ErlHe
 </span></span><span class=line><span class=cl>  <span class=nf>ERTS_CHK_MBUF_SZ</span><span class=p>(</span><span class=n>c_p</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=n>result</span> <span class=o>=</span> <span class=p>(</span><span class=o>*</span><span class=n>bf</span><span class=p>)(</span><span class=n>c_p</span><span class=p>,</span> <span class=n>reg</span><span class=p>,</span> <span class=n>I</span><span class=p>);</span>    <span class=c1>// 调用
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=cm>/* Only heavy BIFs may GC. */</span>
 </span></span><span class=line><span class=cl>  <span class=nf>ASSERT</span><span class=p>(</span><span class=n>E</span> <span class=o>==</span> <span class=n>c_p</span><span class=o>-&gt;</span><span class=n>stop</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
@@ -117,7 +117,7 @@ OpCase(call_light_bif_be): { Export *export; ErtsBifFunc bf; Eterm result; ErlHe
 </span></span><span class=line><span class=cl>    <span class=nf>SET_I</span><span class=p>((</span><span class=n>BeamInstr</span> <span class=o>*</span><span class=p>)</span> <span class=n>I</span><span class=o>+</span><span class=mi>3</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=nf>Goto</span><span class=p>(</span><span class=o>*</span><span class=n>I</span><span class=p>);;</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>c_p</span><span class=o>-&gt;</span><span class=n>freason</span> <span class=o>==</span> <span class=n>TRAP</span><span class=p>)</span> <span class=p>{</span>    <span class=c1>// 失败原因是trap的情况
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl>    <span class=cm>/*
 </span></span></span><span class=line><span class=cl><span class=cm>    * Set the continuation pointer to return to next
 </span></span></span><span class=line><span class=cl><span class=cm>    * instruction after the trap (either by a return from
 </span></span></span><span class=line><span class=cl><span class=cm>    * erlang code or by nif_bif.epilogue() when the BIF
@@ -133,10 +133,10 @@ OpCase(call_light_bif_be): { Export *export; ErtsBifFunc bf; Eterm result; ErlHe
 </span></span><span class=line><span class=cl>      <span class=nf>CHECK_ARGS</span><span class=p>(</span><span class=n>I</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=n>FCALLS</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=o>||</span> <span class=n>FCALLS</span> <span class=o>&gt;</span> <span class=n>neg_o_reds</span><span class=p>)</span> <span class=p>{</span>    <span class=c1>// 还有REDS, 继续
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>FCALLS</span><span class=o>--</span><span class=p>;</span>
+</span></span></span><span class=line><span class=cl>        <span class=n>FCALLS</span><span class=o>--</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>        <span class=nf>Goto</span><span class=p>(</span><span class=n>dis_next</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>                                    <span class=c1>// 没有则切换上下文
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>goto</span> <span class=n>context_switch</span><span class=p>;</span>
+</span></span></span><span class=line><span class=cl>        <span class=k>goto</span> <span class=n>context_switch</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>while</span> <span class=p>(</span><span class=mi>0</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>

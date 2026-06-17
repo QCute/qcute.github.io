@@ -6,16 +6,16 @@
 <a href=https://www.zhihu.com/people/tui-fei-er-you-ya-de-shen-shi title=zhihu target=_blank><i class=ri-zhihu-fill></i></a>
 <a href type=application/rss+xml title=rss target=_blank><i class=ri-rss-fill></i></a></div></div></div></div><div class=content><div class=post_page><div class="post animate__animated animate__fadeInDown"><div class="post_title post_detail_title"><h2><a href=/posts/misc/job-publish-date/>求职网站发布日期</a></h2><i class="icon ri-time-line"></i>
 <span class=date>2020.03.07</span></div><div class="post_content markdown"><p>现在招聘网站几乎都不展示职位的原始发布日期，很多发布了好几个月甚至是好几年的职位，放着用来吸引简历，极大的浪费了求职者的时间、精力和感情。</p><p>个人推荐<a href=https://www.zhipin.com>BOSS直聘</a>，无效职位相对较少，主动询问大多数有回复，而其他网站大多数已读不回<br>而高端职位则推荐<a href=https://www.liepin.com>猎聘</a>，无论是HR还是猎头，职位匹配度、专业程度和回复效率都比较高</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// 查找数据
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>scripts</span> <span class=o>=</span> <span class=nb>Array</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>scripts</span> <span class=o>=</span> <span class=nb>Array</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 找全部script
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>.</span><span class=nx>from</span><span class=p>(</span><span class=nb>document</span><span class=p>.</span><span class=nx>querySelectorAll</span><span class=p>(</span><span class=s1>&#39;script&#39;</span><span class=p>))</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>from</span><span class=p>(</span><span class=nb>document</span><span class=p>.</span><span class=nx>querySelectorAll</span><span class=p>(</span><span class=s1>&#39;script&#39;</span><span class=p>))</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 筛选类型为application/ld+json
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>.</span><span class=nx>filter</span><span class=p>((</span><span class=nx>s</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>s</span><span class=p>.</span><span class=nx>type</span> <span class=o>==</span> <span class=s2>&#34;application/ld+json&#34;</span><span class=p>)</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>filter</span><span class=p>((</span><span class=nx>s</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>s</span><span class=p>.</span><span class=nx>type</span> <span class=o>==</span> <span class=s2>&#34;application/ld+json&#34;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 提取script内容
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>s</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>s</span><span class=p>.</span><span class=nx>innerText</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>s</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>s</span><span class=p>.</span><span class=nx>innerText</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 转JSON
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>data</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>scripts</span><span class=p>[</span><span class=mi>0</span><span class=p>]);</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>data</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>scripts</span><span class=p>[</span><span class=mi>0</span><span class=p>]);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// BOSS直聘内容样例
 </span></span></span><span class=line><span class=cl><span class=c1>// {
@@ -28,7 +28,7 @@
 </span></span></span><span class=line><span class=cl><span class=c1>// }
 </span></span></span><span class=line><span class=cl><span class=c1>// 
 </span></span></span><span class=line><span class=cl><span class=c1>// 其中pubDate字段就是发布日期
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 猎聘内容样例
 </span></span></span><span class=line><span class=cl><span class=c1>// {
 </span></span></span><span class=line><span class=cl><span class=c1>//     &#34;@context&#34;: &#34;https://ziyuan.baidu.com/contexts/cambrian.jsonld&#34;,
